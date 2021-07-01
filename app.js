@@ -44,58 +44,73 @@ app.use(bodyparser.urlencoded({
 //-------------------------< Defining routes >----------------------------------
 
 app.get("/", function(req, res) {
-  res.render("home",{added_movies:added_movies});
+  res.render("home", {
+    added_movies: added_movies
+  });
 });
 
 app.get("/About", function(req, res) {
-  res.render("about",{added_movies:added_movies});
+  res.render("about", {
+    added_movies: added_movies
+  });
 });
 
-app.get("/recommendation",async function(req, res) {
-  for(var i =0; i<movies.length; i++){
-    let url=await get_poster(movies[i].tmdbId);
-    movies[i]['poster']=url;
+app.get("/recommendation", async function(req, res) {
+  for (var i = 0; i < movies.length; i++) {
+    let url = await get_poster(movies[i].tmdbId);
+    movies[i]['poster'] = url;
   }
-  res.render("recommendation", {Movies:movies,added_movies:added_movies});
+  res.render("recommendation", {
+    Movies: movies,
+    added_movies: added_movies
+  });
 });
 
-var added_movies =[];
-var profilearr =Array(11);
+var added_movies = [];
+var profilearr = Array(11);
 var requestedI;
 var profilearr1 = Array(11);
 var profilearr2 = Array(11);
 
-app.get("/recommendation/:moviename/:movieposter",async function(req, res) {
+app.get("/recommendation/:moviename/:movieposter", async function(req, res) {
   var requestedmovie = req.params.moviename;
   var movieposter = req.params.movieposter;
-  for(var i =0; i<movies.length; i++){
-    if(movies[i].title==requestedmovie){
-     requestedI=i;
+  for (var i = 0; i < movies.length; i++) {
+    if (movies[i].title == requestedmovie) {
+      requestedI = i;
     }
   }
-  for(var j=0;j<11;j++){
-    let arr=await get_credits(movies[requestedI].tmdbId);
-    profilearr1[j]=arr[j]['original_name'];
-    profilearr2[j]=arr[j]['character'];
-    if(arr[j]['profile_path']==null){
-      profilearr[j]="/xOGdQKCFaIQXTTAPxXlVkQzzDYs.jpg";
+  for (var j = 0; j < 11; j++) {
+    let arr = await get_credits(movies[requestedI].tmdbId);
+    if (arr[j] == undefined) {
+      profilearr1[j] = "Unknown"
+      profilearr2[j] = "Unknown";
+      profilearr[j] = "";
+    } else {
+      if (arr[j]['profile_path'] == null) {
+        profilearr[j] = "";
+      } else {
+        profilearr[j] = arr[j]['profile_path'];
+      }
+      profilearr1[j] = arr[j]['original_name'];
+      profilearr2[j] = arr[j]['character'];
     }
-    else{
-    profilearr[j]=arr[j]['profile_path'];
-  }
+
     // console.log(profilearr[j]);
   }
   // console.log(req.body.watchlist);
-  res.render("moviepost",{movietitle:requestedmovie,
-    movieimage:movieposter,
-    profileimg:profilearr,
-    profilename:profilearr1,
-    profilechar:profilearr2,
-    added_movies:added_movies,
-    genre:movies[requestedI].genres,
-    popularity:movies[requestedI].popularity,
-    voteaverage:movies[requestedI].vote_average,
-    releasedate:movies[requestedI].release_date});
+  res.render("moviepost", {
+    movietitle: requestedmovie,
+    movieimage: movieposter,
+    profileimg: profilearr,
+    profilename: profilearr1,
+    profilechar: profilearr2,
+    added_movies: added_movies,
+    genre: movies[requestedI].genres,
+    popularity: movies[requestedI].popularity,
+    voteaverage: movies[requestedI].vote_average,
+    releasedate: movies[requestedI].release_date
+  });
 });
 
 
@@ -135,12 +150,12 @@ async function run() {
     });
 
 
-app.post("/moviepost",function(req,res){
-  added_movies.push(req.body.watchlist);
-  console.log(added_movies);
-// console.log(added_movies);
-  res.redirect("/recommendation");
-})
+    app.post("/moviepost", function(req, res) {
+      added_movies.push(req.body.watchlist);
+      console.log(added_movies);
+      // console.log(added_movies);
+      res.redirect("/recommendation");
+    })
     //event 2
 
   });
@@ -153,32 +168,32 @@ var api_key = "30d7de721f9ac1c958640499561b574a";
 var query = '/images?'
 var query1 = '/credits?'
 var img = "https://image.tmdb.org/t/p/original"
-var path=''
+var path = ''
 
 async function get_credits(movie_id) {
-  let endpoint = base_url+ movie_id + query1 + "api_key=" + api_key;
+  let endpoint = base_url + movie_id + query1 + "api_key=" + api_key;
   await fetch(endpoint)
-  .then(res => res.json())
-  .then(data => {
-    path =  data['cast'];
-    // console.log(path);
-  })
-  .catch((error)=>{
-    path='/images/img1.jpg.jpg';
-  });
+    .then(res => res.json())
+    .then(data => {
+      path = data['cast'];
+      // console.log(path);
+    })
+    .catch((error) => {
+      path = '/images/img1.jpg.jpg';
+    });
   return path;
 }
 
 async function get_poster(movie_id) {
-  let endpoint = base_url+ movie_id + query + "api_key=" + api_key;
+  let endpoint = base_url + movie_id + query + "api_key=" + api_key;
   await fetch(endpoint)
-  .then(res => res.json())
-  .then(data => {
-    path =  data['posters'][0]['file_path'];
-  })
-  .catch((error)=>{
-    path='/images/img1.jpg.jpg';
-  });
+    .then(res => res.json())
+    .then(data => {
+      path = data['posters'][0]['file_path'];
+    })
+    .catch((error) => {
+      path = '/images/img1.jpg.jpg';
+    });
   return path
 }
 
