@@ -7,6 +7,7 @@
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-+0n0xVW2eSR5OomGNYDnhzAbDsOXxcvSN1TPprVMTNDbiYZCxYbOOl7+AMvyTG2x" crossorigin="anonymous">
   <link href="https://fonts.googleapis.com/css?family=McLaren|Montserrat&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/css/styles.css">
+  <link rel="stylesheet" href="//netdna.bootstrapcdn.com/font-awesome/4.2.0/css/font-awesome.min.css">
   <link rel="preconnect" href="https://fonts.gstatic.com">
   <link rel="stylesheet" href="https://unpkg.com/aos@next/dist/aos.css" />
 <link href="https://fonts.googleapis.com/css2?family=Merriweather&family=Montserrat:wght@500&family=Noto+Sans+JP&family=Open+Sans&family=Ubuntu&display=swap" rel="stylesheet">
@@ -17,6 +18,18 @@
   $(document).ready(function(){
         $('[data-toggle="popover"]').popover()
   });
+
+  fetch("/watchlist").then(res=>res.json().then(data=>{
+    let container=document.querySelector(".dropdown-menu");
+    for(i=0;i<data['movies'].length;i++){
+      let name=data['movies'][i];
+      let ele=document.createElement('li');
+      let txt=document.createTextNode(name);
+      ele.appendChild(txt);
+      container.appendChild(ele);
+    }
+  }));
+
 </script>
   <link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous" />
 </head>
@@ -25,7 +38,7 @@
   <header>
     <nav id="header">
       <a class="navlink navitem" aria-current="page" href="/">
-        <h1 class="heading"> MovieRecom </h1>
+        <div class="heading"> <span>M</span><span>o</span><span>v</span><span>i</span><span>e</span><span>R</span><span>e</span><span>c</span><span>o</span><span>m</span></div>
       </a>
       <div class="search">
         <div class="search-type">
@@ -47,6 +60,9 @@
             Watch-List
           </a>
           <ul class="dropdown-menu" aria-labelledby="navbarDropdown">
+            <li>
+              <a class="watchlist-trigger" href="/movielist">Go to your Watchlist</a>
+            </li>
 
           </ul>
         </li>

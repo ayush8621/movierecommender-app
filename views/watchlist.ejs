@@ -1,28 +1,50 @@
 <%- include('partials/header'); %>
-
-<section id="search-section">
-  <div class="container">
-    <div class="home">
-      <h1 class="">MovieRecom</h1>
+<div class="watchlist-body">
+  <div class="watchlist-page" id="watchlist-page">
+    <div class="box" id="watchlist-heading">
+      <h1> Watchlist </h1>
     </div>
-    <div class="home-search-container">
-      <form class="home-search-form" action="/" method="post">
-        <i class="fas fa-search"></i>
-        <input type="text" name="search" placeholder="Type any movie">
-        <button class="home-search-button" type="submit" name="home-search-button">        <i class="fas fa-search"></i>
-</button>
-      </form>
+
+
+    <div class="box list-box">
+    <form class="" action="/delete" method="post">
+      <% added_movies.forEach(function(addeditem){ %>
+      <div class="watchlist-item">
+        <input type="checkbox" name="checkbox" value= "<%= addeditem %>" onchange="" >
+
+        <p><%= addeditem %></p>
+        <div class="vr">
+
+        </div>
+        <div class=" star-list-div">
+          <input class="star star-5 star-list" id="star-5" type="radio" value="5" name="star" checked  />
+          <label class="star star-5 star-list" for="star-5"></label>
+          <input class="star star-4 star-list" id="star-4" type="radio" value="4" name="star" />
+          <label class="star star-4 star-list" for="star-4"></label>
+          <input class="star star-3 star-list" id="star-3" type="radio" value="3" name="star"  />
+          <label class="star star-3 star-list" for="star-3"></label>
+          <input class="star star-2 star-list" id="star-2" type="radio" value="2" name="star"  />
+          <label class="star star-2 star-list" for="star-2"></label>
+          <input class="star star-1 star-list" id="star-1" type="radio" value="1" name="star" />
+          <label class="star star-1 star-list" for="star-1"></label>
+        </div>
+          <button class="delete-btn btn" type="submit" value="<%= addeditem %>" name="deletedmovie"><i class="fas fa-trash"></i></button>
+      </div>
+      <%  }) %>
+      <input type="hidden" name="listname" value="" >
+        </form>
     </div>
   </div>
-</section>
 
-<section id="note-section">
+  <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button">Get New Recommendations</button>
+
+<section id="note-section" class="note-section">
   <div class="container">
     <div class="note-container row">
       <div class="popular-recommendations col">
         <div class="note-inner-content">
-          <h3 class="home-title">Popular Recommendations</h3>
-          <div class="heading-line" data-aos="heading-Line" data-aos-delay="20"data-aos-duration="2000">
+          <h3 class="home-title" id="home-title">Recommendations</h3>
+          <div class="heading-lin" data-aos="heading-Lin" data-aos-delay="20" data-aos-duration="2000" >
 
           </div>
         </div>
@@ -108,6 +130,9 @@
   </div>
 
 </section>
+
+
+</div>
 
 
 

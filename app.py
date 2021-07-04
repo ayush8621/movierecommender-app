@@ -51,9 +51,3 @@ def content_based(json_obj):
     return result[['_id']].to_dict(orient='records')
 
 search('b')
-
-@client.on('recommend')
-def content_based(json_obj):
-    pass
-
-search('b')

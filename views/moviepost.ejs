@@ -4,12 +4,12 @@
 <section id="movie-info-section" style="background-image:url(https://image.tmdb.org/t/p/original/<%=movieimage%>)">
   <div class="movieinfo-container">
     <div class="container">
-      <div class="movieinfo" >
+      <div class="movieinfo">
         <div class="movie-image">
           <img class="image" src="https://image.tmdb.org/t/p/original/<%=movieimage%>" width="350px" height="350px" alt="image not found">
         </div>
         <div class="movie-details">
-          <div class="h2" >
+          <div class="h2">
             <h1 class="info" style="color:#fff"><%= movietitle  %> </h1>
           </div>
           <div class="p-tags" style="color:#fff">
@@ -21,10 +21,25 @@
             <p class="info"><%= releasedate %></p>
           </div>
         </div>
-        <div class="watch-list">
-          <form class="" action="/moviepost" method="post">
-            <button class="watch-list-button btn" value="<%= movietitle %>"  data-bs-toggle="tooltip" data-bs-placement="bottom" title="Add to Your Watch List" type="submit" name="watchlist" onclick="list()">+</button>
+        <div class="alert alert-success" id="success-alert">
+          <strong>Success! </strong> Movie added to your watchlist.
+        </div>
+        <div class="stars">
+          <form id="rate-movie-form" action="/moviepost" method="post">
+            <input class="star star-5" id="star-5" type="radio" value="5" name="star" required />
+            <label class="star star-5" for="star-5"></label>
+            <input class="star star-4" id="star-4" type="radio" value="4" name="star" />
+            <label class="star star-4" for="star-4"></label>
+            <input class="star star-3" id="star-3" type="radio" value="3" name="star"  />
+            <label class="star star-3" for="star-3"></label>
+            <input class="star star-2" id="star-2" type="radio" value="2" name="star" />
+            <label class="star star-2" for="star-2"></label>
+            <input class="star star-1" id="star-1" type="radio" value="1" name="star" />
+            <label class="star star-1" for="star-1"></label>
+                <button id="myWish" class="watch-list-button btn" value="<%= movietitle %>" data-bs-toggle="tooltip" data-bs-placement="bottom" title=" Rate this movie & Add to Your Watch List" type="submit" name="watchlist" onclick="list()">+</button>
           </form>
+
+
         </div>
       </div>
     </div>
@@ -32,61 +47,71 @@
 </section>
 <section id="top-cast-section">
   <div class="top-cast-container">
-      <div class="top-cast">
-        <div class="top-cast-heading">
-          <h1>Top Cast</h1>
-          <div class="heading-line">
+    <div class="top-cast">
+      <div class="top-cast-heading">
+        <h1>Top Cast</h1>
+        <div class="heading-line" data-aos="heading-Line" data-aos-delay="20" data-aos-duration="2000" data-aos-once="false">
 
-          </div>
         </div>
-        <div class="top-cast-images">
+      </div>
+      <div class="top-cast-images">
 
         <div class="top-cast-details">
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title= "<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original/<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum">
+              <img src="https://image.tmdb.org/t/p/original/<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
           <div class="top-cast-image">
-            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover"  title="<%=profilename[i]%> as <%=profilechar[i]%>"  data-placement="bottom"  data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
-            <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
+            <a class="btn-a" data-bs-trigger="hover" data-toggle="popover" title="<%=profilename[i]%> as <%=profilechar[i]%>" data-placement="bottom"
+              data-bs-content="Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.">
+              <img src="https://image.tmdb.org/t/p/original<%= profileimg[i++] %>" width="200px" height="200px" alt="image not found"> </a>
           </div>
         </div>
       </div>
 
-      </div>
     </div>
+  </div>
 </section>
 
-  <%- include('partials/footer'); %>
+<%- include('partials/footer'); %>

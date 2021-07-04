@@ -1,19 +1,25 @@
 /* //////////////////////////////////////////////////// Body ///////////////////////////////////////////////////////////////////////////// */
 
 
-
+input[placeholder="New Item"]:-webkit-autofill,
+input[placeholder="New Item"]:-webkit-autofill:hover,
+input[placeholder="New Item"]:-webkit-autofill:focus,
+input[placeholder="New Item"]:-webkit-autofill:active {
+  -webkit-box-shadow: 0 0 0 30px #fff inset !important;
+}
 
 input[placeholder="Type any movie"]:-webkit-autofill,
 input[placeholder="Type any movie"]:-webkit-autofill:hover,
 input[placeholder="Type any movie"]:-webkit-autofill:focus,
 input[placeholder="Type any movie"]:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #2B7A78 inset !important;
+  -webkit-box-shadow: 0 0 0 30px #3C6E71 inset !important;
 }
 
 input[placeholder="Type to Search"]:-webkit-autofill,
 input[placeholder="Type to Search"]:-webkit-autofill:hover,
 input[placeholder="Type to Search"]:-webkit-autofill:focus,
 input[placeholder="Type to Search"]:-webkit-autofill:active {
+  color: #fff;
   -webkit-box-shadow: 0 0 0 30px #17252A inset !important;
 }
 
@@ -29,6 +35,7 @@ input:-webkit-autofill {
   /* Safari support - any positive time runs instantly */
   -webkit-animation-name: autofill;
   -webkit-animation-fill-mode: both;
+  color: #ccc;
 }
 
 html, body {
@@ -63,7 +70,6 @@ a {
 a:hover {
   color: #121211;
   text-decoration: underline;
-  letter-spacing: .1em;
 }
 
 /* //////////////////////////////////////////////////// Navbar Starts ///////////////////////////////////////////////////////////////////////////// */
@@ -81,13 +87,25 @@ a:hover {
   letter-spacing: normal;
 }
 
+
+
+span{
+  transition: transform 150ms;
+}
+
+span:hover{
+  transform: translateZ(5px);
+}
+
 .heading {
   color: #fff;
-  font-family: 'Montserrat', sans-serif;
-  font-weight: 200;
-  font-size: 1.5rem;
+  font-family: "Open Sans";
+  font-weight: 300;
+  font-size: 22px;
   float: left;
   padding-top: 10px;
+  perspective: 100px;
+  position:relative;
 }
 
 .search {
@@ -100,7 +118,6 @@ a:hover {
 .search-type {
   border-radius: 40px;
   background-color: #17252A;
-  /* height:33px; */
   display: flex;
   justify-content: center;
   align-items: center;
@@ -118,6 +135,11 @@ a:hover {
 
 .searchform {
   background-color: transparent;
+}
+
+input[placeholder="Type to Search"]::placeholder{
+  color: grey;
+  opacity: 1;
 }
 
 input[placeholder="Type to Search"]:focus {
@@ -156,7 +178,8 @@ input[placeholder="Type to Search"]:focus {
   font-weight: 450;
   letter-spacing: 0.1em;
   padding-top: 10px;
-  transition: text-decoration 150ms, color 150ms
+  transition: text-decoration 150ms, color 150ms;
+  /* font-family: 'helvetica neue'; */
 }
 
 .navitem:hover {
@@ -176,28 +199,61 @@ input[placeholder="Type to Search"]:focus {
 
 .nav-item a{
 color: rgba(255,255,255,0.8) !important;
+/* font-family: 'helvetica neue'; */
 }
 
 .dropdown-menu{
+  background-color: #ccc;
+  position: relative;
+  width: 200px;
+  margin-top: 12px;
+  transform: translate(-89px, 37px);
+  font-family: 'helvetica neue';
+  max-height: 600px;
+  overflow: auto;
+
+}
+
+.dropdown-menu li{
+  margin: 22px 4px;
+  padding: 3px;
+  margin-top: 0;
+  list-style-type: square;
+  list-style-position: inside;
+}
+
+.dropdown-menu li:first-child{
+  text-align: center;
+  font-weight: bold;
+  background-color: #17252A;
+  color: #fff;
+  margin-top: 0;
+  list-style-type: none;
+}
+
+/* .dropdown-menu li:last-child{
+margin-bottom: 0;
+  height: 27px;
   background-color: #2B7A78;
-}
+  color: black;
+  text-align: center;
+  border-radius: 10px;
+  list-style-type: none;
+  margin-left: 18px;
+  margin-right: 18px;
+} */
 
-.dropdown-item{
-  color:#ccc;
-  /* display: flex;
-  flex-direction: row; */
-}
-
-.dropdown-item:hover{
-  background:none;
+.last-child a{
+  padding: 3px;
 }
 
 /* //////////////////////////////////////////////////// Home Search Bar Starts ///////////////////////////////////////////////////////////////////////////// */
 
 
 #search-section {
-  font-family: 'Noto Sans JP', sans-serif;
-  margin-bottom: 100px;
+  font-family: 'helvetica neue';
+    margin-bottom: 100px;
+    background-image: -webkit-linear-gradient(76deg, #17252A 50%, #2B7A78 50%);
 }
 
 #search-section>.container {
@@ -224,15 +280,15 @@ input[placeholder="Type any movie"] {
 }
 
 
-
 input[placeholder="Type any movie"]::placeholder{
-  color: #DEF2F1;
+  color: grey;
+  opacity: 1;
 }
 
 .home-search-container {
   border-radius: 40px;
-  background-color: #2B7A78;
-  width: 600px;
+background-color: #3C6E71;
+  width: 557px;
   height: 40px;
   display: flex;
   align-items: center;
@@ -253,14 +309,15 @@ input[placeholder="Type any movie"]:focus .home-search-container{
   background: none;
   font-weight: 500;
   outline: none;
-  padding: 7px;
-  width: 74px;
-  transition: background-color 150ms, border-radius 150ms;
+  transition: transform 300ms;
+  font-family: "Montserrat-Light";
+  letter-spacing: 1px;
 }
 
 .home-search-button:hover {
-  background-color: rgba(255,255,255,0.8);
-  border-radius: 25px;
+  /* background-color: #17252A;
+  border-radius: 25px; */
+  transform: rotateZ(20deg);
 }
 
 
@@ -268,7 +325,7 @@ input[placeholder="Type any movie"]:focus .home-search-container{
 
 
 #note-section {
-  font-family: 'Open Sans', sans-serif;
+  font-family: 'helvetica neue';
 }
 
 #note-section>.container {
@@ -277,27 +334,25 @@ input[placeholder="Type any movie"]:focus .home-search-container{
 }
 
 .heading-line{
-  width:12rem;
   height: 6px;
   background-color: #2B7A78;
   margin-top: 10px;
-  animation: line 2s ease-in-out 1 forwards
 }
 
-@keyframes line {
-  0%{
-    width: 12rem;
-  }
-  100%{
-    width: 16rem;
-  }
+[data-aos="heading-Line"]{
+  width: 12rem;
+  transition-property: width ;
 }
+
+[data-aos="heading-Line"].aos-animate {
+  width: 16rem;
+}
+
 .note-container {
   height: 100%;
   margin: 1px;
   width: 100%;
   box-sizing: border-box;
-  /* border: 2px solid orange; */
   border-radius: 8px;
 }
 
@@ -340,6 +395,15 @@ align-items: center;
   box-shadow: 5px 5px 5px 0px #17252A;
   margin-bottom: 40px;
   transition: transform 250ms;
+  background-color: #ccc;
+}
+
+.home-card a{
+  transition: letter-spacing 150ms;
+}
+
+.home-card a:hover{
+  letter-spacing: .1em;
 }
 
 .home-card:hover {
@@ -357,13 +421,20 @@ align-items: center;
 
 #recommendation-section{
 font-family: 'Open Sans', sans-serif;
+background-image: -webkit-linear-gradient(
+60deg
+, #17252A 60%, #2B7A78 50%);
+}
+
+.heading-line{
+  background-color: #17252A;
 }
 
 .recommendation-page-title {
-  font-family: 'Montserrat', sans-serif;
-  /* text-align: center; */
+  font-family: 'helvetica neue';
+    /* text-align: center; */
   font-weight: bold;
-  margin-top: 20px;
+  /* margin-top: 20px; */
   display: flex;
   flex-direction: column;
   justify-content: center;
@@ -392,68 +463,16 @@ box-shadow: 2px 5px 5px 2px #17252A;
   opacity: 1;
 }
 
-/* .recommended-movies-img:hover {
-  box-shadow: 10px 10px 5px 0px rgba(0, 0, 0, 0.75);
-  /* width: 375px; */
-/* height: 325px; */
-}
-
  .grid-item {
   width: 330px;
-  /* height: 450px; */
   margin: 50px;
-  /* border-top-left-radius: 22px;
-  border-top-right-radius: 22px;
-  border-bottom-left-radius: 4px;
-  border-bottom-right-radius: 4px; */
-
-
 }
 
 .grid-item-content {
   position: relative;
   height: 400px;
-  /* visibility: hidden; */
 }
 
-.grid-item-content-one,
-.grid-item-content-three,
-.grid-item-content-four,
-.grid-item-content-six,
-.grid-item-content-seven,
-.grid-item-content-nine
-{
-  /* animation: grid1 2s ease-in 500ms 1 forwards; */
-}
-
-.grid-item-content-two,
-.grid-item-content-five,
-.grid-item-content-eight
-{
-  /* animation: grid2 2s ease-in 500ms 1 forwards; */
-}
-/*
-@keyframes grid1 {
-  0%{
-    opacity: 0;
-    transform: translateY(-25px);
- }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-}
-
-@keyframes grid2 {
-  0%{
-    opacity: 0;
-    transform: translateY(25px);
- }
-  100%{
-    opacity: 1;
-    transform: translateY(0);
-  }
-} */
 
 .overlay {
   position: absolute;
@@ -505,7 +524,6 @@ box-shadow: 2px 5px 5px 2px #17252A;
 #movie-info-section{
   height: 700px;
   width: 100%;
-  /* background-image: url("/images/img4.jpg.jpg") ; */
  background: rgba(0, 0, 0, 0.6);
 background-blend-mode: darken;
 background-size: cover;
@@ -533,15 +551,8 @@ backdrop-filter: blur(15px);
   top: 150px;
   box-sizing: border-box;
   position: absolute;
- /* color: #ccc; */
-
 }
 
-.watch-list{
-  margin-left: 250px;
-margin-top: 286px;
-font-weight: bold;
-}
 
 .watch-list-button{
   border-radius:50%;
@@ -555,6 +566,62 @@ font-weight: bold;
 
 .watch-list-button:hover{
   background-color: #2B7A78;
+}
+
+#success-alert{
+  position: absolute;
+  top: -148px;
+  right: -415px;
+}
+
+.stars{
+  position: absolute;
+    right: -743px;
+    top: 227px;
+}
+
+.stars button{
+position: absolute;
+top: 64px;
+right: 92px;
+padding: 4px;
+border-radius: 28px;
+background-color: #3AAFA9;
+border: none;
+}
+
+.stars button:hover{
+  background-color: #2B7A78;
+}
+
+input.star { display: none; }
+
+label.star {
+  float: right;
+  padding: 10px;
+  font-size: 30px;
+  color: #444;
+  transition: all .2s;
+}
+
+input.star:checked ~ label.star:before {
+  content: '\f005';
+  color: #FD4;
+  transition: all .25s;
+}
+
+input.star-5:checked ~ label.star:before {
+  color: #FE7;
+  text-shadow: 0 0 20px #952;
+}
+
+input.star-1:checked ~ label.star:before { color: #F62; }
+
+label.star:hover { transform: rotate(-15deg) scale(1.3); }
+
+label.star:before {
+  content: '\f006';
+  font-family: FontAwesome;
 }
 
 
@@ -576,15 +643,17 @@ transition: box-shadow 150ms,filter 150ms;
 }
 
 .movie-details {
-margin-left:300px;
-color: #ccc;
+  position: absolute;
+  right: -400px;
+  top: 7px;
+  color: #ccc;
+  width: 200px;
 }
 
 .h2{
 margin-bottom: 60px;
-text-shadow: 2px 2px 2px #darkslategray;
- font-family: 'Montserrat', sans-serif;
-
+font-family: 'helvetica neue';
+width: auto;
 }
 
 .p-tags{
@@ -593,9 +662,9 @@ line-height: 40px;
 font-family: 'Montserrat', sans-serif;
 }
 
-/* .info,.h2{
-  color: #17252A;
-} */
+.info{
+  width: 500px;
+}
 
 #top-cast-section{
   width: 100%;
@@ -611,20 +680,6 @@ font-family: 'Montserrat', sans-serif;
 .top-cast{
   height:400px;
 }
-
-
-
-/* .top-cast-details::after{
-  right: 0;
-  top: 0;
-  transform: rotateZ(180deg);
-  content: '';
-  background :linear-gradient(to right,#ccc 0%,rgba(255, 255, 255, 0) 100%);
-  position: absolute;
-  z-index: 2;
-  width: 15%;
-  height: 100%
-}  */
 
 
 .top-cast-heading{
@@ -663,7 +718,7 @@ font-size: 3rem;
   content: '';
   background: linear-gradient(to right,#ccc 0%,rgba(255,255,255,0) 100%);
   height: 100%;
-  width:10%;
+  width:8%;
   position: absolute;
   z-index: 2;
 }
@@ -747,6 +802,184 @@ font-family: ' sans-serif';
   margin-bottom: 0
 }
 
+/* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
+
+.watchlist-body{
+  background-color: #2B7A78;
+  min-height: 2000px;
+  background-image: -webkit-linear-gradient(65deg, #17252A 70%, #2B7A78 70%);
+  position: relative;
+}
+
+#watchlist-page {
+  position: absolute;
+  left: 540px;
+  top: 50px;
+    font-family: 'helvetica neue';
+    width: 370px;
+}
+
+#watchlist-heading h1{
+  color: #fff;
+  padding: 10px;
+}
+
+.box {
+  max-width: 700px;
+  margin: 40px auto;
+  margin-top: -10px;
+  background: white;
+  border-radius: 5px;
+  box-shadow: 5px 5px 15px -5px rgba(0, 0, 0, 0.3);
+}
+
+.list-box{
+  max-height: 462px;
+  overflow-x: hidden;
+  overflow-y: auto;
+    width: 652px;
+    position: absolute;
+transform: translate(-20%, 0%);
+margin-top: 40px;
+  }
+
+#watchlist-heading {
+  background-color: #17252A;
+  text-align: center;
+}
+
+.watchlist-item {
+height: 115px;
+  display: flex;
+  align-items: center;
+  border-bottom: 1px solid #F1F1F1;
+  position: relative;
+  word-wrap: break-word;
+}
+
+.watchlist-item:last-child {
+  border-bottom: 0;
+}
+
+.vr{
+  border-left: 1px solid grey;
+  height:115px;
+}
+
+.star-list-div{
+padding-left: 20px;
+}
+
+.delete-btn{
+  outline: none;
+  font-weight: lighter;
+  position: absolute;
+  right: 1px;
+top: 40px;
+margin: -3px;
+}
+
+input:checked+p {
+  text-decoration: line-through;
+  text-decoration-color: #17252A;
+}
+
+input[type="checkbox"] {
+  margin: 20px;
+}
+
+.watchlist-item p {
+  margin: 0;
+  padding: 20px;
+  font-size: 20px;
+  font-weight: 200;
+  color: #00204a;
+  max-width: 260px;
+  min-width: 260px;
+}
+
+input[name="checkbox"],input[name="listname"],input[name="inputlist"] {
+  text-align: center;
+  margin-left: 20px;
+}
+
+.watchlist-btn {
+  min-height: 50px;
+  width: 50px;
+  border-radius: 50%;
+  border-color: transparent;
+  background-color: #17252A;
+  color: #fff;
+  font-size: 30px;
+  padding-bottom: 6px;
+  border-width: 0;
+}
+
+
+.watchlist-recommend-btn{
+  /* border: 2px solid white; */
+  border-radius: 7px;
+  background-color: black;
+  position: absolute;
+  right: 35px;
+top: 98px;
+color: #fff;
+color: cadetblue;
+    font-family: 'Open Sans';
+    font-weight: 100;
+    font-size: 13px;
+}
+
+.watchlist-recommend-btn:hover{
+  background-color: #17252A;
+  color: cadetblue;
+}
+
+/* input[placeholder="New Item"] {
+  text-align: center;
+  height: 60px;
+  top: 10px;
+  border: none;
+  background: transparent;
+  font-size: 20px;
+  font-weight: 200;
+  width: 313px;
+}
+
+input[placeholder="New Item"]:focus {
+  outline: none;
+  box-shadow: inset 0 -3px 0 0 #17252A;
+}
+
+::placeholder {
+  color: grey;
+  opacity: 1;
+} */
+
+.note-section{
+  position: absolute;
+  transform: translate(7%,91%);
+}
+
+.heading-lin{
+  height: 6px;
+  background-color: cadetblue;
+  margin-top: 10px;
+}
+
+[data-aos="heading-Lin"]{
+  width: 12rem;
+  transition-property: width ;
+}
+
+[data-aos="heading-Lin"].aos-animate {
+  width: 16rem;
+}
+
+#home-title{
+  color: #ccc;
+}
+
 /* //////////////////////////////////////////////////// Footer Starts ///////////////////////////////////////////////////////////////////////////// */
 
 .div-footer {
@@ -757,12 +990,10 @@ font-family: ' sans-serif';
 
 
 .footer {
-  /* position: absolute; */
   text-align: center;
   bottom: 0;
   width: 100%;
   height: 100%;
-  /* background-image: linear-gradient(30deg,darkslategray,black); */
 }
 
 .footer p {
@@ -772,6 +1003,7 @@ font-family: ' sans-serif';
   font-weight: bold;
   margin-bottom: 0;
 }
+
 
 /* //////////////////////////////////////////////////// Footer Ends ///////////////////////////////////////////////////////////////////////////// */
 .note {
