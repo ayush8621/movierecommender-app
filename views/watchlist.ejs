@@ -1,45 +1,59 @@
 <%- include('partials/header'); %>
 <div class="watchlist-body">
   <div class="watchlist-page" id="watchlist-page">
-    <div class="box" id="watchlist-heading">
+    <div class="box box-list" id="watchlist-heading">
       <h1> Watchlist </h1>
     </div>
 
-
     <div class="box list-box">
-    <form class="" action="/delete" method="post">
-      <% added_movies.forEach(function(addeditem){ %>
-      <div class="watchlist-item">
-        <input type="checkbox" name="checkbox" value= "<%= addeditem %>" onchange="" >
 
-        <p><%= addeditem %></p>
-        <div class="vr">
+      <% i=0 %>
+      <% added_movies.forEach(function(addedmovies) { %>
+        <hr>
 
-        </div>
-        <div class=" star-list-div">
-          <input class="star star-5 star-list" id="star-5" type="radio" value="5" name="star" checked  />
-          <label class="star star-5 star-list" for="star-5"></label>
-          <input class="star star-4 star-list" id="star-4" type="radio" value="4" name="star" />
-          <label class="star star-4 star-list" for="star-4"></label>
-          <input class="star star-3 star-list" id="star-3" type="radio" value="3" name="star"  />
-          <label class="star star-3 star-list" for="star-3"></label>
-          <input class="star star-2 star-list" id="star-2" type="radio" value="2" name="star"  />
-          <label class="star star-2 star-list" for="star-2"></label>
-          <input class="star star-1 star-list" id="star-1" type="radio" value="1" name="star" />
-          <label class="star star-1 star-list" for="star-1"></label>
-        </div>
-          <button class="delete-btn btn" type="submit" value="<%= addeditem %>" name="deletedmovie"><i class="fas fa-trash"></i></button>
-      </div>
-      <%  }) %>
-      <input type="hidden" name="listname" value="" >
+        <%status=Array(5).fill('')%>
+        <%status[ratings[i]-1] = 'checked'%>
+
+        <form class="" action="/delete" method='post'>
+
+          <div class="watchlist-item">
+
+            <input type="checkbox" name="checkbox" value="<%=addedmovies%>" onclick="change(this)">
+
+            <p><%=addedmovies%></p>
+
+            <div class="vr">
+            </div>
+
+            <div class = "star-list-div">
+              <input class="star star-5 star-list" id="star-5-<%=i%>" type="radio" value="5" name="star " onclick="rating(this)" <%=status[4]%> >
+              <label class="star star-5 star-list" for="star-5-<%=i%>"></label>
+              <input class="star star-4 star-list" id="star-4-<%=i%>" type="radio" value="4" name="star" onclick="rating(this)" <%=status[3]%> >
+              <label class="star star-4 star-list" for="star-4-<%=i%>"></label>
+              <input class="star star-3 star-list" id="star-3-<%=i%>" type="radio" value="3" name="star" onclick="rating(this)" <%=status[2]%> >
+              <label class="star star-3 star-list" for="star-3-<%=i%>"></label>
+              <input class="star star-2 star-list" id="star-2-<%=i%>" type="radio" value="2" name="star" onclick="rating(this)" <%=status[1]%> >
+              <label class="star star-2 star-list" for="star-2-<%=i%>"></label>
+              <input class="star star-1 star-list" id="star-1-<%=i%>" type="radio" value="1" name="star" onclick="rating(this)" <%=status[0]%> >
+              <label class="star star-1 star-list" for="star-1-<%=i%>"></label>
+            </div>
+              <button class="delete-btn btn" type="submit" value="<%= addedmovies %>" name="deletedmovie" data-bs-toggle="tooltip" data-bs-placement="right" data-trigger="hover" title="Delete <%= addedmovies %> from the list" ><i class="fas fa-trash" ></i></button>
+          </div>
         </form>
+        <% i++ %>
+
+      <% }); %>
+      <form name='checkform' action="/delete" method="post">
+        <button class="delete-selected-btn" type='submit' name='check' value="" data-bs-toggle="tooltip" data-bs-placement="right" title="Deleted selected movies" ><img src="/images/trash.gif"/></button>
+      </form>
+      <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button">Get New Recommendations</button>
+
     </div>
+
   </div>
 
-  <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button">Get New Recommendations</button>
-
-<section id="note-section" class="note-section">
-  <div class="container">
+<section id="watchlist-note-section" class="note-section">
+  <div class="watchlist-container container">
     <div class="note-container row">
       <div class="popular-recommendations col">
         <div class="note-inner-content">
@@ -122,8 +136,6 @@
               </div>
             </div>
           </div>
-
-
         </div>
       </div>
     </div>
@@ -134,6 +146,27 @@
 
 </div>
 
+<script>
 
+  var list= Array();
 
-<%- include('partials/footer'); %>
+  function change(obj){
+    if (obj.checked)
+      list.push(obj.value)
+    else{
+      let ind = list.indexOf(obj.value);
+      list.splice(ind,1);
+    }
+    document.checkform.check.value = list;
+  }
+
+  function rating(obj){
+    let ind = obj.id.slice(-1);
+    fetch(`/changeRating/${ind}/${obj.value}`);
+  }
+
+</script>
+<div class="footer-div">
+  <%- include('partials/footer'); %>
+
+</div>

@@ -10,14 +10,12 @@ const _http_ = require('http');
 const {MongoClient} = require('mongodb');
 const fetch = require("node-fetch");
 
-var movies = [];
-var requestedI;
-var added_movies = [];
-var updatedaddedmovies = [];
-var profilearr = Array(11);
-var profilearr1 = Array(11);
-var profilearr2 = Array(11);
-let cast_detail_arr=[];
+var search = [];
+var top_movies = [];
+var recom = [];
+
+var watchlist = [];
+var ratings = [];
 
 //--------------------------< Defining variables >------------------------------
 
@@ -45,63 +43,32 @@ app.use(bodyparser.urlencoded({
 
 //-------------------------< Defining routes >----------------------------------
 
-app.get("/", function(req, res) {
-  res.render("home", {added_movies: added_movies});
-});
 
 app.get("/About", function(req, res) {
   res.render("about");
 });
 
+
 app.get("/movielist",function(req,res){
-  res.render("watchlist",{added_movies:added_movies});
+  res.render("watchlist",{added_movies: watchlist , ratings: ratings});
 })
 
 
 app.get("/watchlist",(req,res)=>{
-  res.send({movies:added_movies})
+  res.send({movies: watchlist});
 });
+
+
 
 app.get("/recommendation", async function(req, res) {
-  for (var i = 0; i < movies.length; i++) {
-    let url = await get_poster(movies[i].tmdbId);
-    movies[i]['poster'] = url;
-    // console.log(  movies[i]['poster'])
+  for (var i = 0; i < search.length; i++) {
+    let url = await get_poster(search[i].tmdbId);
+    search[i]['poster'] = url;
   }
-  res.render("recommendation", {Movies: movies,added_movies: added_movies});
+  res.render("recommendation", {Movies: search});
 });
 
-app.get("/recommendation/:moviename/:movieposter", async function(req, res) {
-  var requestedmovie = req.params.moviename;
-  var movieposter = req.params.movieposter;
-  for (var i = 0; i < movies.length; i++) {
-    if (movies[i].title == requestedmovie)
-      requestedI = i;
-  }
-  for (var j = 0; j < 11; j++) {
-    let arr = await get_credits(movies[requestedI].tmdbId);
-    if (arr[j] == undefined) {
-      profilearr1[j] = "Unknown"
-      profilearr2[j] = "Unknown";
-      profilearr[j] = "";
-    } else {
-      if (arr[j]['profile_path'] == null)
-        profilearr[j] = "";
-       else {
-        profilearr[j] = arr[j]['profile_path'];
-      }
-      profilearr1[j] = arr[j]['original_name'];
-      cast_detail = await get_details(profilearr1[j]);
-      cast_detail_arr.push(cast_detail);
-      console.log(cast_detail_arr[j])
-      profilearr2[j] = arr[j]['character'];
-    }
-  }
-  res.render("moviepost", {
-    movietitle: requestedmovie,movieimage: movieposter,profileimg: profilearr,profilename: profilearr1,profilechar: profilearr2,cast_detail_arr:cast_detail_arr,
-    added_movies: added_movies,genre: movies[requestedI].genres,popularity: movies[requestedI].popularity,voteaverage: movies[requestedI].vote_average,releasedate: movies[requestedI].release_date
-  });
-});
+
 
 
 
@@ -116,7 +83,8 @@ async function run() {
   await client.connect();
   console.log('Connected to database!');
   db = client.db("movies");
-  col = db.collection("movies_metadata");
+  col1 = db.collection("movies_metadata");
+  col2 = db.collection('top_movies');
 
   //Set-up connection to python
   io.on('connection', (soc) => {
@@ -124,103 +92,157 @@ async function run() {
 
     //Defining events
 
-    //Search event
+
+    // Homepage with Demographic recommendation
+    app.get("/",function(req, res) {
+      col2.find().toArray(async (err,data)=>{
+        top_movies = data.slice(0,9);
+
+        for (var i = 0; i < top_movies.length; i++) {
+          let url = await get_poster(top_movies[i].tmdbId);
+          top_movies[i]['poster'] = url;
+        }
+        res.render("home",{movies:top_movies})
+      });
+    });
+
+
+    //Search event when user searches movie name
     app.post("/", function(req, res) {
       let typedmovie = req.body.search
       soc.emit('search', typedmovie, function(obj) {
-        col.find({
+        col1.find({
           '$or': obj
         }).toArray(function(err, data) {
-          console.log(data);
-          movies = data;
-          console.log(movies);
+          search = data;
+          console.log('Search done!');
           res.redirect("/recommendation");
         });
       });
     });
 
 
+    //Movie information when user clicks movie poster
+    app.get("/recommendation/:query/:index/:movieposter", async function(req, res) {
+      let ind = req.params.index;
+      let poster = req.params.movieposter;
+      let movies = eval(req.params.query);
+
+      let profile = await get_profile(movies[ind].tmdbId, soc);
+      console.log("Profile generated!");
+      res.render("moviepost", {
+        movietitle: movies[ind].title, movieimage: poster, profile: profile,
+        genre: movies[ind].genres, popularity: movies[ind].popularity, voteaverage: movies[ind].vote_average, releasedate: movies[ind].release_date})
+    });
+
+
+    //Creating watchlist as per user
     app.post("/moviepost", function(req, res) {
-      added_movies.push(req.body.watchlist);
-      console.log(added_movies);
-      console.log(req.body.star);
-      res.redirect("/recommendation");
+      let reqMov = req.body.watchlist;
+      let rating = req.body.star
+
+      if (watchlist.includes(reqMov))
+        ratings[watchlist.indexOf(reqMov)] = rating;
+      else{
+        watchlist.push(reqMov);
+        ratings.push(rating);
+      }
+      res.redirect("back");
     })
+
+
+    // Removing movies from watchlist
+    app.post("/delete",function(req,res){
+      let check = req.body.check;
+      let index = 0;
+
+      if (check==undefined)
+        check=[req.body.deletedmovie];
+      else
+        check = check.split(',');
+
+      check.forEach((item) => {
+         index = watchlist.indexOf(item);
+         watchlist.splice(index, 1);
+         ratings.splice(index, 1);
+      });
+      res.redirect("/movielist")
+    });
+
+
+    // Changing ratings according to user
+    app.get('/changeRating/:movie/:rating', (req,res)=>{
+      let ind = req.params.movie;
+      let rating = req.params.rating;
+      ratings[ind] = rating;
+    })
+
   });
 };
 
-  var deletedindex;
-  var check = [];
-  var deleted_movie;
-app.post("/delete",function(req,res){
-  deleted_movie = req.body.deletedmovie;
-   check=(req.body.checkbox);
-  console.log(check);
-  console.log(deleted_movie);
-  if(check==undefined){
-   deletedindex = added_movies.indexOf(deleted_movie);
-  if (deletedindex > -1) {
-   added_movies.splice(deletedindex, 1);
-  }
-}
-  if(check!=undefined ){
-  check.forEach((checked_item) => {
-     deletedindex = added_movies.indexOf(checked_item);
-     added_movies.splice(deletedindex, 1);
-  });
-}
 
 
-  res.redirect("/movielist");
-})
+
+//-------------------->>>>>>>>>>>>>>>>>>>>>>>-----------------------------------
+
 
 //Subroutines
 
-async function get_details(cast_name) {
-  let endpoint_wiki = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + cast_name ;
-  await fetch(endpoint_wiki)
-    .then(res => res.json())
-    .then(data => {
-      path = data.query.search[0].snippet;
-    })
-    .catch((error) => {
-      path = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
-    });
-  return path;
-}
 
 var base_url = "https://api.themoviedb.org/3/movie/";
 var api_key = "30d7de721f9ac1c958640499561b574a";
 var query = '/images?'
 var query1 = '/credits?'
-var img = "https://image.tmdb.org/t/p/original"
-var path = ''
+var img = "https://image.tmdb.org/t/p/w92"
 
+
+// Getting credits for a movie
 async function get_credits(movie_id) {
   let endpoint = base_url + movie_id + query1 + "api_key=" + api_key;
+  let credits = '';
   await fetch(endpoint)
-    .then(res => res.json())
+    .then(res => res.json()
     .then(data => {
-      path = data['cast'];
-    })
-    .catch((error) => {
-      path = '/img10.jpg.jpg';
-    });
-  return path;
+      credits = data['cast'];
+    }))
+    .catch(err => {credits = [];});
+  return credits
 }
 
+
+// Getting path of movie poster
 async function get_poster(movie_id) {
   let endpoint = base_url + movie_id + query + "api_key=" + api_key;
+  let path = '';
   await fetch(endpoint)
-    .then(res => res.json())
+    .then(res => res.json()
     .then(data => {
       path = data['posters'][0]['file_path'];
-    })
-    .catch((error) => {
-      path = '/tI0AHXooAbubqd4cDQapAv5xTmJ.jpg';
-    });
+    }))
+    .catch(err => {path = '/tI0AHXooAbubqd4cDQapAv5xTmJ.jpg';});
   return path
 }
+
+
+// Generating Cast profiles
+async function get_profile(tmdbId, socket){
+  let n = 11;
+  var profile = Array(11);
+  let credits = await get_credits(tmdbId);
+
+  for (var i=0; i<n; i++) {
+    profile[i] = Array(3).fill('');
+    if (credits[i] != undefined){
+      if (credits[i]['profile_path'] != null)
+        profile[i][0] = credits[i]['profile_path'];
+      profile[i][1] = credits[i]['original_name'];
+      profile[i][2] = credits[i]['character'];
+    }
+  }
+  return profile
+}
+
+
 
 //------------------------->>>>>>>>>>>>>>>>>>-----------------------------------
 
