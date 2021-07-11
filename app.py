@@ -5,6 +5,7 @@ import numpy as np
 import nltk
 import json
 import pymongo
+# import wikipedia
 
 #Loading data
 file_name=['./data/features.npz','./data/movies']
@@ -19,14 +20,17 @@ def distance(row,string):
 client=socketio.Client()
 client.connect('http://localhost:3000')
 
+
 #Defining events
 @client.on('connect')
 def on_connect():
     print('Connected to node js server!')
 
+
 @client.on('message')
 def on_message(msg):
     print('Message Recieved: ',msg)
+
 
 @client.on('search')
 def search(user_inp):
@@ -36,18 +40,25 @@ def search(user_inp):
     output=output.sort_values(by='distance')[0:9]
     return output[['_id']].to_dict(orient='records')
 
-@client.on('recommend')
-def content_based(json_obj):
-    output=movies.copy()
-    ind=[item['_id'] for item in json_obj]
-    rat=[item['rating'] for item in json_obj]
 
-    user_data=rat.reshape(1,-1).dot(features[ind])
+@client.on('recommend')
+def content_based(obj):
+    output=movies.copy()
+    ind=list(map(int,obj['id']))
+    rat=list(map(int,obj['ratings']))
+
+    user_data=np.reshape(rat,(1,-1)).dot(features[ind])
     similarity=features.dot(user_data.reshape(-1,1))
-    similarity[[ind]]=0
+    similarity[[ind],]=0
 
     output.insert(2,column='similarity',value=similarity)
-    result=movies_sim.sort_values(by='similarity',ascending=False)[0:10]
+    result=output.sort_values(by='similarity',ascending=False)[0:10]
     return result[['_id']].to_dict(orient='records')
+
+
+@client.on('actor_details')
+def get_actor(name,n):
+    movie=wikipedia.search(name,2)
+    return wikipedia.summary(movie[0],n)
 
 search('b')

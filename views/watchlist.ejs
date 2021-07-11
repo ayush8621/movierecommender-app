@@ -46,7 +46,7 @@
       <form name='checkform' action="/delete" method="post">
         <button class="delete-selected-btn" type='submit' name='check' value="" data-bs-toggle="tooltip" data-bs-placement="right" title="Deleted selected movies" ><img src="/images/trash.gif"/></button>
       </form>
-      <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button">Get New Recommendations</button>
+      <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button" onclick="recommend()">Get New Recommendations</button>
 
     </div>
 
@@ -58,44 +58,44 @@
       <div class="popular-recommendations col">
         <div class="note-inner-content">
           <h3 class="home-title" id="home-title">Recommendations</h3>
-          <div class="heading-lin" data-aos="heading-Lin" data-aos-delay="20" data-aos-duration="2000" >
+          <div class="heading-line" data-aos="heading-Line" data-aos-delay="20" data-aos-duration="2000" >
 
           </div>
         </div>
         <div class="home-recommendations row">
-
+          <%j=0%>
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-            <a href="#"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+            <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="./recommendation/:movieinfo"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-              <a href="#"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="./recommendation/:movieinfo"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-              <a href="#"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="./recommendation/:movieinfo"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-              <a href="#"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="./recommendation/:movieinfo"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
@@ -103,36 +103,36 @@
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-              <a href="./recommendation/:movieinfo"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-              <a class="card-text-link" href="#"> <h4 class="cardtext">Moviename</h4></a>
+              <a class="card-text-link" href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;">
-              <a href="./recommendation/:movieinfo"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="#"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-              <a href="./recommendation/:movieinfo"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="./recommendation/:movieinfo"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
 
           <div class="col col-lg-3 home-card-col">
             <div class="card home-card" style="width: 18rem;" >
-              <a href="#"><img src="/images/img1.jpg.jpg" class="card-img-top" alt="..."></a>
+              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
-                <a href="./recommendation/:movieinfo"> <h4 class="cardtext">Moviename</h4></a>
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
               </div>
             </div>
           </div>
@@ -165,8 +165,16 @@
     fetch(`/changeRating/${ind}/${obj.value}`);
   }
 
+
+  function recommend(){
+    location.href="/recommend";
+  }
+
 </script>
 <div class="footer-div">
-  <%- include('partials/footer'); %>
-
+  <div class="footer">
+      <p class="footer-content"> Copyright 2021 </p>
+    </div>
 </div>
+
+<%- include('partials/footer'); %>

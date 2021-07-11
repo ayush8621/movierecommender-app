@@ -14,8 +14,7 @@ var search = [];
 var top_movies = [];
 var recom = [];
 
-var watchlist = [];
-var ratings = [];
+var watchlist = {title:[],id:[],ratings:[]};
 
 //--------------------------< Defining variables >------------------------------
 
@@ -50,12 +49,19 @@ app.get("/About", function(req, res) {
 
 
 app.get("/movielist",function(req,res){
-  res.render("watchlist",{added_movies: watchlist , ratings: ratings});
+  let mov = ''
+
+  if (recom.length<8)
+    mov=top_movies;
+  else
+    mov=recom
+
+  res.render("watchlist",{added_movies: watchlist.title , ratings: watchlist.ratings, recom:mov});
 })
 
 
 app.get("/watchlist",(req,res)=>{
-  res.send({movies: watchlist});
+  res.send({movies: watchlist.title})
 });
 
 
@@ -131,23 +137,28 @@ async function run() {
       let profile = await get_profile(movies[ind].tmdbId, soc);
       console.log("Profile generated!");
       res.render("moviepost", {
-        movietitle: movies[ind].title, movieimage: poster, profile: profile,
+        movietitle: movies[ind].title, movieimage: poster, profile: profile, id: movies[ind]._id,
         genre: movies[ind].genres, popularity: movies[ind].popularity, voteaverage: movies[ind].vote_average, releasedate: movies[ind].release_date})
     });
 
 
     //Creating watchlist as per user
     app.post("/moviepost", function(req, res) {
-      let reqMov = req.body.watchlist;
-      let rating = req.body.star
+      let var1 = req.body.watchlist.split(',');
 
-      if (watchlist.includes(reqMov))
-        ratings[watchlist.indexOf(reqMov)] = rating;
+      let id = var1[0];
+      let reqMov = var1[1];
+      let rating = req.body.star;
+
+
+      if (watchlist.title.includes(reqMov))
+        watchlist.ratings[watchlist.title.indexOf(reqMov)] = rating;
       else{
-        watchlist.push(reqMov);
-        ratings.push(rating);
+        watchlist.title.push(reqMov);
+        watchlist.ratings.push(rating);
+        watchlist.id.push(id);
       }
-      res.redirect("back");
+      res.redirect('back');
     })
 
 
@@ -162,20 +173,40 @@ async function run() {
         check = check.split(',');
 
       check.forEach((item) => {
-         index = watchlist.indexOf(item);
-         watchlist.splice(index, 1);
-         ratings.splice(index, 1);
+         index = watchlist.title.indexOf(item);
+         watchlist.id.splice(index,1);
+         watchlist.title.splice(index, 1);
+         watchlist.ratings.splice(index, 1);
       });
       res.redirect("/movielist")
     });
 
 
     // Changing ratings according to user
-    app.get('/changeRating/:movie/:rating', (req,res)=>{
+    app.get("/changeRating/:movie/:rating", (req,res)=>{
       let ind = req.params.movie;
       let rating = req.params.rating;
-      ratings[ind] = rating;
+      watchlist.ratings[ind] = rating;
     })
+
+
+    //recommendation task
+    app.get('/recommend',(req,res)=>{
+      console.log('Recommending movies!')
+      soc.emit('recommend',watchlist,(data)=>{
+        col1.find({'$or':data}).toArray(async (err,mov)=>{
+          recom = mov;
+
+          for (var i = 0; i < recom.length; i++) {
+            let url = await get_poster(recom[i].tmdbId);
+            recom[i]['poster'] = url;
+          }
+
+          res.redirect("/movielist");
+        });
+      });
+    });
+
 
   });
 };
@@ -187,6 +218,20 @@ async function run() {
 
 
 //Subroutines
+
+// async function get_details(cast_name) {
+//   let endpoint_wiki = "https://en.wikipedia.org/w/api.php?action=query&format=json&list=search&srsearch=" + cast_name ;
+//   await fetch(endpoint_wiki)
+//     .then(res => res.json())
+//     .then(data => {
+//       path = data.query.search[0].snippet;
+//     })
+//     .catch((error) => {
+//       path = 'Lorem ipsum dolor sit amet, consectetur adipisicing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.';
+//     });
+//   return path;
+// }
+
 
 
 var base_url = "https://api.themoviedb.org/3/movie/";
@@ -252,7 +297,7 @@ async function get_profile(tmdbId, socket){
 
 //----------------< Keeping track of client response >--------------------------
 
-run().catch(console.dir);
+run().catch((err)=>console.log(err));
 child.stdout.on('data', (data) => console.log(data.toString()));
 child.stderr.on('data', (data) => console.log(data.toString()));
 

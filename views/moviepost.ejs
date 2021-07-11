@@ -36,7 +36,7 @@
             <label class="star star-2" for="star-2"></label>
             <input class="star star-1" id="star-1" type="radio" value="1" name="star" checked />
             <label class="star star-1" for="star-1"></label>
-                <button id="myWish" class="watch-list-button btn" value="<%= movietitle %>" data-bs-toggle="tooltip" data-trigger="hover" data-bs-placement="bottom" title=" Rate this movie & Add to Your Watch List" type="submit" name="watchlist" onclick="list()">+</button>
+                <button id="myWish" class="watch-list-button btn" value="<%=id%>,<%= movietitle %>" data-bs-toggle="tooltip" data-trigger="hover" data-bs-placement="bottom" title=" Rate this movie & Add to Your Watch List" type="submit" name="watchlist" onclick="list()">+</button>
           </form>
 
 
@@ -114,4 +114,8 @@
   </div>
 </section>
 
+<div class="footer">
+    <p class="footer-content" style="color:#17252A"> Copyright 2021 </p>
+  </div>
+  
 <%- include('partials/footer'); %>
