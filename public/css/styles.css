@@ -2,6 +2,8 @@
 
 
 
+
+/* @media only screen and (min-width: 768px) { */
 /* input[placeholder="New Item"]:-webkit-autofill,
 input[placeholder="New Item"]:-webkit-autofill:hover,
 input[placeholder="New Item"]:-webkit-autofill:focus,
@@ -101,7 +103,9 @@ a:hover {
   letter-spacing: normal;
 }
 
-
+.ellipsis-btn{
+  display: none;
+}
 
 span{
   transition: transform 150ms;
@@ -280,7 +284,7 @@ background-blend-mode: darken;
   display: flex;
   align-items: center;
   justify-content: center;
-  backdrop-filter: blur(2px);
+  backdrop-filter: blur(1px);
 }
 
 .home {
@@ -769,7 +773,7 @@ font-size: 3rem;
   width:8%;
   position: absolute;
   z-index: 2;
-  content: '\f104';
+  content: '';
   font-family: FontAwesome;
 }
 
@@ -1159,4 +1163,226 @@ box-shadow: inset -20px -20px 60px #1a637a,
   font-weight: bold;
 padding:20px;
 line-height:40px;
+}
+
+
+
+
+@media (max-width : 600px) {
+
+  /* //////////////////////////////////////////////////// Navbar Starts ///////////////////////////////////////////////////////////////////////////// */
+
+  .search {
+    width: 52%;
+  }
+
+  input[placeholder="Type to Search"]:focus {
+    width: 150px;
+  }
+
+  .search-type:hover .searchbar {
+    width: 150px;
+  }
+
+  .navbar-nav {
+    flex-direction: column;
+    justify-content: end;
+    display: none;
+  }
+
+.ellipsis-btn{
+  border: none;
+  background: none;
+  top: 26px;
+right: 35px;
+position: absolute;
+display: block;
+}
+
+  .nav-link{
+  position: absolute;
+  top: 69px;
+  right: 47px;
+  z-index: 1;
+ }
+
+ .nav-item{
+  position: absolute;
+  top: 105px;
+  right: 15px;
+  z-index: 1;
+ }
+
+
+
+/* //////////////////////////////////////////////////////// home section///////////////////////// */
+
+  #search-section>.container {
+    height: 660px;
+  }
+
+  input[placeholder="Type any movie"] {
+    width: 273px;
+  }
+
+  .home-search-container {
+    width: 350px;
+  }
+
+/* ////////////////////////////////////////////////////// home recommendation //////////////////////////////////// */
+
+
+
+#note-section>.container {
+  height: 4447px;
+}
+
+
+.home-recommendations {
+  padding: 70px;
+}
+
+
+.home-card:hover {
+  transform: translateZ(0);
+}
+
+/* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
+
+.recommendationpage-recommendations {
+  height: 4080px;
+  width: 100%;
+}
+
+.suggested-movies {
+  display: block;
+  align-items: center;
+  justify-content: space-around;
+  height: 1282px;
+}
+
+
+
+/* //////////////////////////////////////////moviepost///////////////////////////////////////////////////////// */
+
+#movie-info-section{
+  height: 940px;
+}
+
+#success-alert{
+  position: absolute;
+  top: 85px;
+  left: -12px;
+}
+
+.stars{
+  left: 174px;
+top: 660px;
+right: auto;
+}
+
+.stars button{
+top: 64px;
+left: 100px;
+}
+
+label.star {
+  font-size: 28px;
+}
+
+.movie-image {
+    margin-left: 40px;
+}
+
+.movie-details {
+  left: 0px;
+  top: 400px;
+}
+
+.h2{
+text-align: center;
+}
+
+.p-tags{
+margin-top:98px;
+    margin-left: 20px;
+}
+
+
+#top-cast-section{
+  height:2500px;
+}
+
+.top-cast-details{
+  flex-direction: column;
+  -webkit-animation: none;
+      transform: translate(146px,-65px);
+}
+
+.top-cast-image img:hover{
+  transform:translateZ(0);
+}
+
+.popover-body{
+  display: none;
+}
+
+
+/* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
+
+.watchlist-body{
+  min-height: 5190px;
+}
+
+#watchlist-page {
+  left: 115px;
+  top: 70px;
+    width: 227px;
+}
+
+.list-box{
+    width: 378px;
+transform: translate(-15%, 14%);
+  }
+
+.vr{
+  display: none;
+}
+
+.star-list-div{
+display: none;
+}
+
+.note-section{
+  transform: translate(1%,91%);
+}
+
+#home-title{
+color: #17252A;
+}
+
+
+
+
+/* ///////////////////////////////////////////////////////////about us//////////////////////////////////////// */
+
+
+  .aboutus-div > .heading-line{
+    transform: translate(181px, 13px);
+width: 10rem;
+height: 5px;
+  }
+
+.aboutus-heading{
+      transform: translate(25px, 10px);
+}
+  .about-us-content-div{
+    width: 400px;
+      height: 345px;
+      right: 35px;
+  }
+
+  .about-us-content-div p{
+  line-height:27px;
+  }
 }
