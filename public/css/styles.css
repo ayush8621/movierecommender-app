@@ -1,15 +1,31 @@
 /* //////////////////////////////////////////////////// Body ///////////////////////////////////////////////////////////////////////////// */
 
+*::-webkit-scrollbar{
+  width: 10px;
+  background-color: #ccc;
+}
 
+::-webkit-scrollbar {
+  width: 10px;
+}
 
+/* Track */
+::-webkit-scrollbar-track {
+  box-shadow: inset 0 0 5px grey;
+  border-radius: 10px;
+}
 
-/* @media only screen and (min-width: 768px) { */
-/* input[placeholder="New Item"]:-webkit-autofill,
-input[placeholder="New Item"]:-webkit-autofill:hover,
-input[placeholder="New Item"]:-webkit-autofill:focus,
-input[placeholder="New Item"]:-webkit-autofill:active {
-  -webkit-box-shadow: 0 0 0 30px #17252A inset !important;
-} */
+/* Handle */
+::-webkit-scrollbar-thumb {
+  background: #14819e;
+  border-radius: 10px;
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #047697;
+}
+
 
 input[placeholder="Type any movie"]:-webkit-autofill,
 input[placeholder="Type any movie"]:-webkit-autofill:hover,
@@ -355,7 +371,8 @@ input[placeholder="Type any movie"]:focus .home-search-container{
 
 #note-section>.container {
   height: 1230px;
-  width: 100%
+  width: 100%;
+  margin-right: 90px;
 }
 
 .heading-line{
@@ -375,7 +392,7 @@ input[placeholder="Type any movie"]:focus .home-search-container{
 
 .note-container {
   height: 100%;
-  margin: 1px;
+  margin: 25px;
   width: 100%;
   box-sizing: border-box;
   border-radius: 8px;
@@ -407,8 +424,9 @@ align-items: center;
   width: 100%;
   height: 400px;
   box-sizing: border-box;
-  padding: 30px;
+  /* padding: 30px; */
   margin-top: 20px;
+      justify-content: space-evenly;
 }
 
 .home-card-col {
@@ -421,6 +439,7 @@ align-items: center;
   margin-bottom: 40px;
   transition: transform 250ms;
   background-color: #ccc;
+  width: 18rem;
 }
 
 
@@ -433,7 +452,7 @@ align-items: center;
   white-space: nowrap;
   text-overflow: ellipsis;
 overflow: hidden;
-width: 266px;
+/* width: 266px; */
 }
 
 .cardtext {
@@ -481,6 +500,8 @@ background-image: -webkit-linear-gradient(66deg, #17252A 50%, #14819e 50%,#0f85a
   transition: width 0.5s, height 0.5s;
   border-radius: 7px;
 box-shadow: 2px 5px 5px 2px #17252A;
+width:330px;
+ height:400px;
 }
 
 .grid-item:hover .overlay {
@@ -869,16 +890,15 @@ font-family: ' sans-serif';
 
 .watchlist-body{
   background-color: #14819e;
-  min-height: 1930px;
+  min-height: 2020px;
   background-image: -webkit-linear-gradient(65deg, #17252A 72%, #14819e 67%,#0f85a6 );
-
   position: relative;
 }
 
 #watchlist-page {
-  position: absolute;
-  left: 540px;
-  top: 50px;
+  margin-left: auto;
+  margin-right: auto;
+  transform: translateY(50px);
     font-family: 'helvetica neue';
     width: 370px;
     height: 570px;
@@ -910,6 +930,7 @@ height: 800px;
 max-width: 370px;
 }
 
+
 .list-box{
   max-height: 462px;
   overflow-x: hidden;
@@ -919,6 +940,7 @@ max-width: 370px;
     position: relative;
 transform: translate(-20%, 14%);
   }
+
 
 #watchlist-heading {
   background-color: #17252A;
@@ -1055,7 +1077,7 @@ box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
 
 .note-section{
   position: absolute;
-  transform: translate(7%,91%);
+  transform: translate(7%,30%);
 }
 
 .heading-lin{
@@ -1118,43 +1140,38 @@ box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
     /* background-image: linear-gradient(10deg,#14819e,#0f85a6, #1f748f,#1094ae); */
     height: 90vh;
     font-family: 'helvetica neue';
+    margin-left: -55px;
   }
 
 .aboutus-div > .heading-line{
-      transform: translate(633px, 13px);
-      width:12rem;
+      /* transform: translate(633px, 13px); */
       height: 5px;
 }
 
 .aboutus-heading{
   text-align: center;
-transform: translate(-27px, 10px);
+  display: flex;
+  flex-direction: column;
+  /* justify-content: center; */
+  align-items: center;
 font-size: 3rem;
 font-weight: bold;
 }
 
-.about-us-logo-div{
-  width: 778px;
-  height: 500px;
-  position: absolute;
-  top: 210px;
-  left:150px;
-  border: 2px solid black;
-}
+
 
 .about-us-content-div{
-  position: absolute;
-  z-index: 2;
-  width: 770px;
+  margin-left: auto;
+      margin-right: auto;
+      display: block;
+      margin-top: 80px;
+  width: 53em;
 height: 430px;
-top: 250px;
-right: 370px;
 border-radius: 20px;
 background: #1f748f;
 box-shadow: inset -20px -20px 60px #1a637a,
             inset 20px 20px 60px #2485a4;
   opacity: 0.9;
-
 }
 
 .about-us-content-div p{
@@ -1165,8 +1182,299 @@ padding:20px;
 line-height:40px;
 }
 
+[data-aos="about-heading-Line"]{
+  width: 9rem;
+  transition-property: width ;
+}
 
 
+[data-aos="about-heading-Line"].aos-animate {
+  width: 12rem;
+}
+
+/* /////////////////////////////////////////////media queries start//////////////////////////////// */
+
+@media (min-width : 992px) and (max-width : 1400px){
+
+  /* ////////////////////////////////////////////////////// home recommendation //////////////////////////////////// */
+
+  .col{
+    width:33% !important;
+  }
+
+  #note-section>.container {
+    height: 1750px;
+  }
+
+  .note-inner-content{
+    margin-left: -39px;
+  }
+
+  /* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
+
+  .watchlist-body{
+    min-height: 2550px;
+  }
+
+}
+@media (min-width : 992px) and (max-width : 1200px){
+
+  /* ////////////////////////////////////////////////////// home recommendation //////////////////////////////////// */
+
+  .home-card{
+    width:16.3rem !important;
+  }
+
+  #note-section>.container {
+    height: 1650px;
+  }
+
+  /* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
+
+.recommended-movies-img{
+  height: 370px;
+  width: 300px;
+}
+
+.grid-item{
+  height: 370px;
+  width: 300px;
+}
+
+.overlay{
+  width: 270px;
+  height: 330px;
+}
+
+/* //////////////////////////////////////////moviepost///////////////////////////////////////////////////////// */
+
+.stars{
+  right: -556px;
+top: 247px;
+}
+
+.movie-details{
+  right: -293px;
+}
+
+.popover-body{
+  display: none;
+}
+
+}
+
+@media (min-width : 1040px) and (max-width : 1130px){
+
+  /* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
+
+  .recommended-movies-img{
+    height: 330px;
+    width: 270px;
+  }
+
+  .grid-item{
+    height: 370px;
+    width: 300px;
+  }
+
+  .overlay{
+    width: 270px;
+    height: 330px;
+  }
+
+}
+
+@media (min-width : 940px) and (max-width : 1040px){
+
+  /* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
+
+  .recommended-movies-img{
+    height: 330px;
+    width: 270px;
+  }
+
+  .grid-item{
+    height: 370px;
+    width: 300px;
+    margin:24px;
+  }
+
+  .overlay{
+    width: 270px;
+    height: 330px;
+  }
+
+}
+
+@media (min-width : 768px) and (max-width : 940px){
+
+/* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
+
+.grid-item-content-two,.grid-item-content-five,.grid-item-content-eight{
+  display: none;
+}
+.grid-item{
+  margin:15px;
+}
+
+.overlay{
+  width: 270px;
+  height: 330px;
+}
+
+}
+
+@media (min-width : 768px) and (max-width : 992px){
+
+  /* ////////////////////////////////////////////////////// home recommendation //////////////////////////////////// */
+
+  .col{
+    width:50% !important;
+  }
+
+  #note-section>.container {
+    height: 2250px;
+  }
+
+/* //////////////////////////////////////////// aboutus////////////////////////////////////////// */
+
+  .about-us-content-div{
+    width: 45em;
+      height: 345px;
+      right: 35px;
+  }
+
+  /* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
+
+  .watchlist-body{
+    min-height: 3080px;
+  }
+
+  /* //////////////////////////////////////////moviepost///////////////////////////////////////////////////////// */
+
+  .stars{
+right: -351px;
+  top: 251px;
+  }
+
+.movie-details{
+  right: -220px;
+}
+
+.popover-body{
+  display: none;
+}
+
+}
+
+@media (min-width : 600px) and (max-width : 768px){
+
+  /* ////////////////////////////////////////////////////// home recommendation //////////////////////////////////// */
+
+  #note-section>.container {
+    height: 1900px;
+  }
+
+  .home-card{
+    width:14.3rem !important;
+  }
+
+
+
+  /* //////////////////////////////////////////////////// Navbar Starts ///////////////////////////////////////////////////////////////////////////// */
+
+
+  input[placeholder="Type to Search"]:focus {
+    width: 150px;
+  }
+
+  .search {
+    width: 52%;
+  }
+
+  .search-type:hover .searchbar {
+    width: 150px;
+  }
+
+  /* //////////////////////////////////////////////////////// home section///////////////////////// */
+
+
+  input[placeholder="Type any movie"] {
+    width: 335px;
+  }
+
+  .home-search-container {
+    width: 410px;
+  }
+
+  /* ///////////////////////////////////////////////////////////about us//////////////////////////////////////// */
+
+
+  .about-us-content-div{
+    width: 32em;
+      height: 345px;
+      right: 35px;
+  }
+
+  /* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
+
+  .watchlist-body{
+    min-height: 5228px;
+  }
+
+  .list-box{
+      width: 435px;
+  transform: translate(-7%, 14%);
+    }
+
+  .vr{
+    display: none;
+  }
+
+  .star-list-div{
+  display: none;
+  }
+
+  #home-title {
+      color: #17252A;
+  }
+
+ .watchlist-home-card{
+  width: 18rem !important;
+  margin-left: auto;
+  margin-right: auto;
+  display:block;
+}
+
+.popover-body,.movie-details,.stars{
+  display: none;
+}
+
+
+/* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
+
+
+.recommended-movies-img{
+  height: 330px;
+  width: 270px;
+}
+
+.grid-item{
+  height: 370px;
+  width: 300px;
+  margin:15px;
+}
+
+.grid-item-content-two,.grid-item-content-five,.grid-item-content-eight{
+  display: none;
+}
+
+.overlay{
+  width: 270px;
+  height: 330px;
+}
+
+}
 
 @media (max-width : 600px) {
 
@@ -1237,15 +1545,15 @@ display: block;
   height: 4447px;
 }
 
+.col{
+  width:100% !important;
+}
 
 .home-recommendations {
-  padding: 70px;
+  padding: 50px;
 }
 
 
-.home-card:hover {
-  transform: translateZ(0);
-}
 
 /* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
 
@@ -1259,6 +1567,8 @@ display: block;
   align-items: center;
   justify-content: space-around;
   height: 1282px;
+  margin-left:auto;
+  margin-right: auto;
 }
 
 
@@ -1331,18 +1641,13 @@ margin-top:98px;
 /* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
 
 .watchlist-body{
-  min-height: 5190px;
+  min-height: 5274px;
 }
 
-#watchlist-page {
-  left: 115px;
-  top: 70px;
-    width: 227px;
-}
 
 .list-box{
     width: 378px;
-transform: translate(-15%, 14%);
+transform:translateY(14%);
   }
 
 .vr{
@@ -1353,33 +1658,36 @@ transform: translate(-15%, 14%);
 display: none;
 }
 
-.note-section{
-  transform: translate(1%,91%);
-}
 
 #home-title{
 color: #17252A;
 }
 
+.note-inner-content{
+  margin-left: -27px;
 
+}
 
 
 /* ///////////////////////////////////////////////////////////about us//////////////////////////////////////// */
 
+.aboutus-div {
+    margin-right: -10px;
+    margin-left: 0
+}
 
   .aboutus-div > .heading-line{
-    transform: translate(181px, 13px);
-width: 10rem;
+width: 10em;
 height: 5px;
   }
 
 .aboutus-heading{
-      transform: translate(25px, 10px);
+  margin-right: -6px;
 }
+
   .about-us-content-div{
     width: 400px;
       height: 345px;
-      right: 35px;
   }
 
   .about-us-content-div p{

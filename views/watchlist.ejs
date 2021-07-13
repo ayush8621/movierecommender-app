@@ -5,7 +5,7 @@
       <h1> Watchlist </h1>
     </div>
 
-    <div class="box list-box">
+    <div class="box list-box" data-simplebar>
 
       <% i=0 %>
       <% added_movies.forEach(function(addedmovies) { %>
@@ -65,7 +65,7 @@
         <div class="home-recommendations row">
           <%j=0%>
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
             <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -74,7 +74,7 @@
           </div>
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -83,7 +83,7 @@
           </div>
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -92,7 +92,7 @@
           </div>
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -102,7 +102,7 @@
 
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
               <a class="card-text-link" href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -111,7 +111,7 @@
           </div>
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;">
+            <div class="card home-card watchlist-home-card" style="width: 18rem;">
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -120,7 +120,7 @@
           </div>
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
@@ -129,7 +129,7 @@
           </div>
 
           <div class="col col-lg-3 home-card-col">
-            <div class="card home-card" style="width: 18rem;" >
+            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
               <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
               <div class="card-body">
                 <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
