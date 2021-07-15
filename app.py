@@ -4,8 +4,7 @@ import pandas as pd
 import numpy as np
 import nltk
 import json
-import pymongo
-# import wikipedia
+import swifter
 
 #Loading data
 file_name=['./data/features.npz','./data/movies']
@@ -35,7 +34,7 @@ def on_message(msg):
 @client.on('search')
 def search(user_inp):
     output=movies.copy()
-    dist=output.apply(distance,axis=1,string=user_inp,raw=True)
+    dist=output.swifter.apply(distance,axis=1,string=user_inp,raw=True)
     output.insert(2,'distance',value=dist)
     output=output.sort_values(by='distance')[0:9]
     return output[['_id']].to_dict(orient='records')
@@ -56,9 +55,6 @@ def content_based(obj):
     return result[['_id']].to_dict(orient='records')
 
 
-@client.on('actor_details')
-def get_actor(name,n):
-    movie=wikipedia.search(name,2)
-    return wikipedia.summary(movie[0],n)
+
 
 search('b')

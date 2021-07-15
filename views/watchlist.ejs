@@ -9,172 +9,199 @@
 
       <% i=0 %>
       <% added_movies.forEach(function(addedmovies) { %>
-        <hr>
+      <hr>
 
-        <%status=Array(5).fill('')%>
-        <%status[ratings[i]-1] = 'checked'%>
+      <%status=Array(5).fill('')%>
+      <%status[ratings[i]-1] = 'checked'%>
 
-        <form class="" action="/delete" method='post'>
+      <form class="" action="/delete" method='post'>
 
-          <div class="watchlist-item">
+        <div class="watchlist-item">
 
-            <input type="checkbox" name="checkbox" value="<%=addedmovies%>" onclick="change(this)">
+          <input type="checkbox" name="checkbox" value="<%=addedmovies%>" onclick="change(this)">
 
-            <p><%=addedmovies%></p>
+          <p><%=addedmovies%></p>
 
-            <div class="vr">
-            </div>
-
-            <div class = "star-list-div">
-              <input class="star star-5 star-list" id="star-5-<%=i%>" type="radio" value="5" name="star " onclick="rating(this)" <%=status[4]%> >
-              <label class="star star-5 star-list" for="star-5-<%=i%>"></label>
-              <input class="star star-4 star-list" id="star-4-<%=i%>" type="radio" value="4" name="star" onclick="rating(this)" <%=status[3]%> >
-              <label class="star star-4 star-list" for="star-4-<%=i%>"></label>
-              <input class="star star-3 star-list" id="star-3-<%=i%>" type="radio" value="3" name="star" onclick="rating(this)" <%=status[2]%> >
-              <label class="star star-3 star-list" for="star-3-<%=i%>"></label>
-              <input class="star star-2 star-list" id="star-2-<%=i%>" type="radio" value="2" name="star" onclick="rating(this)" <%=status[1]%> >
-              <label class="star star-2 star-list" for="star-2-<%=i%>"></label>
-              <input class="star star-1 star-list" id="star-1-<%=i%>" type="radio" value="1" name="star" onclick="rating(this)" <%=status[0]%> >
-              <label class="star star-1 star-list" for="star-1-<%=i%>"></label>
-            </div>
-              <button class="delete-btn btn" type="submit" value="<%= addedmovies %>" name="deletedmovie" data-bs-toggle="tooltip" data-bs-placement="right" data-trigger="hover" title="Delete <%= addedmovies %> from the list" ><i class="fas fa-trash" ></i></button>
+          <div class="vr">
           </div>
-        </form>
-        <% i++ %>
+
+          <div class="star-list-div">
+            <input class="star star-5 star-list" id="star-5-<%=i%>" type="radio" value="5" name="star " onclick="rating(this)" <%=status[4]%>>
+            <label class="star star-5 star-list" for="star-5-<%=i%>"></label>
+            <input class="star star-4 star-list" id="star-4-<%=i%>" type="radio" value="4" name="star" onclick="rating(this)" <%=status[3]%>>
+            <label class="star star-4 star-list" for="star-4-<%=i%>"></label>
+            <input class="star star-3 star-list" id="star-3-<%=i%>" type="radio" value="3" name="star" onclick="rating(this)" <%=status[2]%>>
+            <label class="star star-3 star-list" for="star-3-<%=i%>"></label>
+            <input class="star star-2 star-list" id="star-2-<%=i%>" type="radio" value="2" name="star" onclick="rating(this)" <%=status[1]%>>
+            <label class="star star-2 star-list" for="star-2-<%=i%>"></label>
+            <input class="star star-1 star-list" id="star-1-<%=i%>" type="radio" value="1" name="star" onclick="rating(this)" <%=status[0]%>>
+            <label class="star star-1 star-list" for="star-1-<%=i%>"></label>
+          </div>
+          <button class="delete-btn btn" type="submit" value="<%= addedmovies %>" name="deletedmovie" data-tippy-content="Delete <%= addedmovies %> from the list"  data-tippy-arrow="false"  ><i
+              class="fas fa-trash"></i></button>
+        </div>
+      </form>
+      <% i++ %>
 
       <% }); %>
       <form name='checkform' action="/delete" method="post">
-        <button class="delete-selected-btn" type='submit' name='check' value="" data-bs-toggle="tooltip" data-bs-placement="right" title="Deleted selected movies" ><img src="/images/trash.gif"/></button>
+        <button class="delete-selected-btn" type='submit' name='check' value="" data-tippy-content="Delete selected items"  data-tippy-arrow="false" ><img src="/images/trash.gif" /></button>
       </form>
-      <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button" onclick="recommend()">Get New Recommendations</button>
+      <button class="watchlist-recommend-btn btn" data-tippy-content="Get New Recommendations"  data-tippy-arrow="false"  type="button" name="button" onclick="recommend()">Get New Recommendations</button>
 
     </div>
 
   </div>
 
-<section id="watchlist-note-section" class="note-section">
-  <div class="watchlist-container container">
-    <div class="note-container row">
-      <div class="popular-recommendations col">
-        <div class="note-inner-content">
-          <h3 class="home-title" id="home-title">Recommendations</h3>
-          <div class="heading-line" data-aos="heading-Line" data-aos-delay="20" data-aos-duration="2000" >
+  <section id="watchlist-note-section" class="note-section">
+    <div class="watchlist-container container">
+      <div class="note-container row">
+        <div class="popular-recommendations col">
+          <div class="note-inner-content">
+            <h3 class="home-title" id="home-title">Recommendations</h3>
+            <div class="heading-line" data-aos="heading-Line" data-aos-delay="20" data-aos-duration="2000">
 
-          </div>
-        </div>
-        <div class="home-recommendations row">
-          <%j=0%>
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-            <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
-              </div>
             </div>
           </div>
-
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+          <div class="home-recommendations row">
+            <%j=0%>
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-              <a class="card-text-link" href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;">
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a class="card-text-link" href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
-          </div>
 
-          <div class="col col-lg-3 home-card-col">
-            <div class="card home-card watchlist-home-card" style="width: 18rem;" >
-              <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
-              <div class="card-body">
-                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"> <h4 class="cardtext"><%=recom[j++].title%></h4></a>
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
+              </div>
+            </div>
+
+            <div class="col col-lg-3 home-card-col">
+              <div class="card home-card watchlist-home-card" style="width: 18rem;">
+                <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>"><img src="https://image.tmdb.org/t/p/original<%=recom[j].poster%>" class="card-img-top" width="286px" height="429px" alt="..."></a>
+                <div class="card-body">
+                  <a href="./recommendation/recom/<%=j%><%=recom[j].poster%>">
+                    <h4 class="cardtext" data-tippy-content="<%=recom[j].title%> " data-tippy-arrow="false" ><%=recom[j++].title%></h4>
+                  </a>
+                </div>
               </div>
             </div>
           </div>
         </div>
       </div>
     </div>
-  </div>
 
-</section>
+  </section>
 
 
 </div>
 
 <script>
+  var list = Array();
 
-  var list= Array();
-
-  function change(obj){
+  function change(obj) {
     if (obj.checked)
       list.push(obj.value)
-    else{
+    else {
       let ind = list.indexOf(obj.value);
-      list.splice(ind,1);
+      list.splice(ind, 1);
     }
     document.checkform.check.value = list;
   }
 
-  function rating(obj){
+  function rating(obj) {
     let ind = obj.id.slice(-1);
     fetch(`/changeRating/${ind}/${obj.value}`);
   }
 
 
-  function recommend(){
-    location.href="/recommend";
+  function recommend() {
+    location.href = "/recommend";
   }
-
 </script>
 <div class="footer-div">
   <div class="footer">
-      <p class="footer-content"> Copyright 2021 </p>
+    <div class="contact-us">
+      <ul class="list-inline">
+        <li class="list-inline-item"><button style="color:#b8b4af" class="contactus-btn" onclick="showcontactdiv()">Contact Us</button></li>
+        <div style="background-color:#c3faff45" class="contactus-content">
+          <p style="color: #0c2f2f;align-items:left">deshwalkanu88@gmail.com</p>
+          <p style="color: #0c2f2f;align-items:left">gupta.ayush211099@gmail.com</p>
+        </div>
+        <li class="list-inline-item"><a style="color:#b8b4af" href="/about">About Us</a></li>
+        <li class="list-inline-item back-to-top"><button style="color:#b8b4af" class="back-to-top-btn" type="button">Back to top<span><img style="color:#b8b4af" src="/images/arrow.png" width="12px" height="12px" alt=""></span></button></li>
+
+      </ul>
     </div>
+    <p class="footer-content" style="color:#a6a3a3;opacity:0.6"> Movierecom © <%= curyear %></p>
+  </div>
 </div>
 
 <%- include('partials/footer'); %>

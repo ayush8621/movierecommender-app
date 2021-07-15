@@ -282,6 +282,9 @@ margin-bottom: 0;
 
 /* //////////////////////////////////////////////////// Home Search Bar Starts ///////////////////////////////////////////////////////////////////////////// */
 
+.home-header{
+  background-image: linear-gradient(10deg,#0a657d,#05627d, #12637d,#073b45) !important;
+}
 
 #search-section {
   font-family: 'helvetica neue';
@@ -290,7 +293,7 @@ margin-bottom: 0;
     background-repeat: no-repeat;
     background-position: center;
 background-size: cover;
-background-color: rgba(0,0,0,0.3);
+background-color: rgba(0,0,0,0.5);
 background-blend-mode: darken;
 }
 
@@ -304,20 +307,44 @@ background-blend-mode: darken;
 }
 
 .home {
-  margin-bottom: 30px;
+width: 560px;
+margin-top: -153px;
+margin-bottom: 107px;
+display: flex;
+flex-direction: column;
+align-items: center;
+justify-content: center;
 }
 
 .home h1 {
   font-weight: bold;
   color: #17252A;
+  margin-bottom: 35px;
+    color: #ffffffc9;;
+    font-family: 'Noto Sans JP';
+    margin-left: auto;
+margin-right: auto;
+display: block;
+width: auto;
 }
 
+.home  p{
+  text-align: center;
+  margin-left: auto;
+  margin-right: auto;
+  display: block;
+width: auto;
+  line-height: 1.4;
+font-size: 15px;
+      color: #ccc;
+      font-family: 'Open Sans';
+}
 
 input[placeholder="Type any movie"] {
   background: none;
   outline: none;
   border: none;
-  width: 480px;
+  width: 609px;
 }
 
 
@@ -329,7 +356,7 @@ input[placeholder="Type any movie"]::placeholder{
 .home-search-container {
   border-radius: 40px;
 background-color: #047697;
-  width: 557px;
+  width: 685px;
   height: 40px;
   display: flex;
   align-items: center;
@@ -484,8 +511,15 @@ background-image: -webkit-linear-gradient(66deg, #17252A 50%, #14819e 50%,#0f85a
   align-items: center;
 }
 
+.recommendation-home{
+  margin-top: 0;
+  margin-bottom: 50px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
 .recommendationpage-recommendations {
-  height: 1500px;
+  height: 1540px;
   width: 100%;
 }
 
@@ -631,8 +665,8 @@ backdrop-filter: blur(15px);
 
 .stars{
   position: absolute;
-    right: -743px;
-    top: 227px;
+    right: -880px;
+    top: 290px;
 }
 
 .stars button{
@@ -699,20 +733,16 @@ div.star:before {
 
 .movie-image {
 cursor: pointer;
-height: 350px;
+height: 410px;
 transition: box-shadow 150ms,filter 150ms;
+position: relative;
 }
+
 
 #movie-info-section img{
   border-radius: 14px;
 }
 
-.movie-image:hover{
-  box-shadow: 9px 9px 7px rgba(0,0,0,0.3);
-  filter: blur(.8px);
-  background: rgba(0, 0, 0, 0.3);
-
-}
 
 .movie-details {
   position: absolute;
@@ -722,8 +752,12 @@ transition: box-shadow 150ms,filter 150ms;
   width: 200px;
 }
 
+.moviepost-overlay{
+  display: none;
+}
+
 .h2{
-margin-bottom: 60px;
+margin-bottom: -64px;
 font-family: 'helvetica neue';
 width: auto;
 }
@@ -732,6 +766,13 @@ width: auto;
 margin-top:98px;
 line-height: 40px;
 font-family: 'Montserrat', sans-serif;
+}
+
+.first-info{
+  margin-bottom: 76px;
+    font-size: 15px;
+    margin-left: 5px;
+    font-weight: 500;
 }
 
 .info{
@@ -878,8 +919,13 @@ font-family: ' sans-serif';
 .popover-body{
   background-color: #1f748f;
   color: #ccc;
+  display: none;
 }
 
+.tooltip-inner {
+    max-width: none;
+    white-space: nowrap;
+}
 .moviepost-footer{
   background-color: #025955;
   height: 100%;
@@ -1102,6 +1148,80 @@ box-shadow: 2px 2px 6px rgba(0,0,0,0.3);
 
 /* //////////////////////////////////////////////////// Footer Starts ///////////////////////////////////////////////////////////////////////////// */
 
+.contact-us {
+    color: #080e14;
+  }
+
+.contact-us ul {
+  padding:0;
+  list-style:none;
+  text-align:center;
+  font-size:16px;
+  line-height:1.6;
+  margin-bottom:0;
+}
+
+.contact-us li {
+  padding:0 10px;
+}
+
+.contact-us ul a {
+  color:inherit;
+  text-decoration:none;
+  opacity:0.8;
+}
+
+.contact-us ul a:hover {
+  opacity:1;
+}
+
+.back-to-top button{
+  background: none;
+  border:none;
+  opacity:0.7;
+}
+
+.back-to-top button:hover{
+  opacity: 1;
+}
+
+.contactus-btn{
+  background: none;
+  border:none;
+  opacity:0.8;
+  transition: display 1s;
+}
+
+.contactus-btn:target{
+  display: block;
+}
+
+.contactus-btn:hover{
+  opacity: 1;
+}
+
+.back-to-top-btn span{
+  margin-left:6px;
+  opacity: 0.5
+}
+
+.contactus-content{
+  width: 260px;
+      padding: 8px;
+      background-color: #032f3345;
+      color: white;
+      position: absolute;
+      transform: translate(339px, -56px);
+      display: none;
+      border-radius: 7px;
+}
+
+.contactus-content p{
+  margin: 0 !important;
+  padding: 0 !important;
+  align-items: flex-start;
+}
+
 .div-footer {
   position: absolute;
   bottom: 0;
@@ -1162,24 +1282,24 @@ font-weight: bold;
 
 .about-us-content-div{
   margin-left: auto;
-      margin-right: auto;
-      display: block;
-      margin-top: 80px;
-  width: 53em;
-height: 430px;
-border-radius: 20px;
-background: #1f748f;
-box-shadow: inset -20px -20px 60px #1a637a,
-            inset 20px 20px 60px #2485a4;
-  opacity: 0.9;
+    margin-right: auto;
+    display: block;
+    margin-top: 70px;
+    width: 60em;
+    /* height: 509px; */
+    border-radius: 20px;
+    background: #1f748f;
+    box-shadow: inset -20px -20px 60px #1a637a, inset 20px 20px 60px #2485a4;
+    opacity: 0.9;
 }
 
 .about-us-content-div p{
   color: #ccc;
   font-family: "Open Sans";
   font-weight: bold;
-padding:20px;
-line-height:40px;
+  padding: 25px;
+  line-height: 40px;
+  font-size: 17px;
 }
 
 [data-aos="about-heading-Line"]{
@@ -1190,6 +1310,11 @@ line-height:40px;
 
 [data-aos="about-heading-Line"].aos-animate {
   width: 12rem;
+}
+
+.div-footer > .aboutus-footer{
+  bottom: 0;
+  margin-top:20px;
 }
 
 /* /////////////////////////////////////////////media queries start//////////////////////////////// */
@@ -1217,6 +1342,14 @@ line-height:40px;
   }
 
 }
+
+@media (min-width:1200px) and (max-width:1400px) {
+  .stars{
+  right: -779px !important;
+top: 292px !important;
+}
+}
+
 @media (min-width : 992px) and (max-width : 1200px){
 
   /* ////////////////////////////////////////////////////// home recommendation //////////////////////////////////// */
@@ -1249,12 +1382,16 @@ line-height:40px;
 /* //////////////////////////////////////////moviepost///////////////////////////////////////////////////////// */
 
 .stars{
-  right: -556px;
-top: 247px;
+  right: -585px;
+  top: 299px;
 }
 
 .movie-details{
   right: -293px;
+}
+
+.movie-image{
+  margin-left: -25px;
 }
 
 .popover-body{
@@ -1338,9 +1475,13 @@ top: 247px;
 
 /* //////////////////////////////////////////// aboutus////////////////////////////////////////// */
 
+.aboutus-div{
+  height: 100vh;
+}
+
   .about-us-content-div{
     width: 45em;
-      height: 345px;
+      height: 590px;
       right: 35px;
   }
 
@@ -1352,13 +1493,21 @@ top: 247px;
 
   /* //////////////////////////////////////////moviepost///////////////////////////////////////////////////////// */
 
+  .info {
+      width: 328px;
+  }
+
+  .first-info {
+      margin-bottom: 41px;
+    }
+
   .stars{
-right: -351px;
-  top: 251px;
+    right: -325px;
+    top: 420px;
   }
 
 .movie-details{
-  right: -220px;
+      right: -317px;
 }
 
 .popover-body{
@@ -1409,10 +1558,13 @@ right: -351px;
 
   /* ///////////////////////////////////////////////////////////about us//////////////////////////////////////// */
 
+.aboutus-div{
+  height: 120vh;
+}
 
   .about-us-content-div{
     width: 32em;
-      height: 345px;
+      height: 750px;
       right: 35px;
   }
 
@@ -1446,10 +1598,57 @@ right: -351px;
   display:block;
 }
 
-.popover-body,.movie-details,.stars{
+/* /////////////////////////////////////////////////// moviepost/////////////////////////// */
+
+.movie-image{
+  text-align: center;
+}
+
+.movieinfo{
+  margin-left: 40px;
+}
+
+.popover-body,.movie-details{
   display: none;
 }
 
+.stars{
+  right: 38px;
+    top: 417px;
+}
+
+.moviepost-overlay{
+position: absolute;
+top: 0;
+left: 0;
+background: rgba(0, 0, 0, 0.6);
+/* Black see-through */
+color: #f1f1f1;
+width: 100%;
+height: 100%;
+transition: .5s ease;
+opacity: 0;
+color: white;
+font-size: 20px;
+padding: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 7px;
+}
+
+.movie-image:hover .moviepost-overlay {
+  opacity: 1;
+}
+
+.moviepost-overlay>* {
+  transform: translateY(30px);
+  transition: transform .5s;
+}
+
+.moviepost-overlay:hover>* {
+  transform: translateY(0);
+}
 
 /* //////////////////////////////////////////////////// Recommendation Page Starts ///////////////////////////////////////////////////////////////////////////// */
 
@@ -1533,6 +1732,10 @@ display: block;
     width: 273px;
   }
 
+.home{
+  width: auto;
+}
+
   .home-search-container {
     width: 350px;
   }
@@ -1586,57 +1789,51 @@ display: block;
 }
 
 .stars{
-  left: 174px;
-top: 660px;
-right: auto;
+  right: 38px;
+  top: 417px;
 }
 
-.stars button{
-top: 64px;
-left: 100px;
-}
-
-label.star {
-  font-size: 28px;
-}
-
-.movie-image {
-    margin-left: 40px;
-}
-
-.movie-details {
-  left: 0px;
-  top: 400px;
-}
-
-.h2{
+.overlay-details{
+  margin-left: -4px;
 text-align: center;
 }
 
-.p-tags{
-margin-top:98px;
-    margin-left: 20px;
+.movieinfo{
+  margin-left: 40px;
 }
 
-
-#top-cast-section{
-  height:2500px;
+.moviepost-overlay{
+position: absolute;
+top: 0;
+left: 0;
+background: rgba(0, 0, 0, 0.6);
+/* Black see-through */
+color: #f1f1f1;
+width: 100%;
+height: 100%;
+transition: .5s ease;
+opacity: 0;
+color: white;
+font-size: 20px;
+padding: 20px;
+display: flex;
+justify-content: center;
+align-items: center;
+border-radius: 7px;
 }
 
-.top-cast-details{
-  flex-direction: column;
-  -webkit-animation: none;
-      transform: translate(146px,-65px);
+.movie-image:hover .moviepost-overlay {
+  opacity: 1;
 }
 
-.top-cast-image img:hover{
-  transform:translateZ(0);
+.moviepost-overlay>* {
+  transform: translateY(30px);
+  transition: transform .5s;
 }
 
-.popover-body{
-  display: none;
+.moviepost-overlay:hover>* {
+  transform: translateY(0);
 }
-
 
 /* ////////////////////////////////////////// MovieList Page /////////////////////////////////////////////////// */
 
@@ -1672,8 +1869,7 @@ color: #17252A;
 /* ///////////////////////////////////////////////////////////about us//////////////////////////////////////// */
 
 .aboutus-div {
-    margin-right: -10px;
-    margin-left: 0
+  height: 105vh;
 }
 
   .aboutus-div > .heading-line{
@@ -1682,12 +1878,13 @@ height: 5px;
   }
 
 .aboutus-heading{
-  margin-right: -6px;
+  margin-right: -63px;
 }
 
   .about-us-content-div{
-    width: 400px;
-      height: 345px;
+    width: 26em;
+height: 609px;
+    margin-left: 126px;
   }
 
   .about-us-content-div p{

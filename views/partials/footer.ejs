@@ -1,8 +1,27 @@
 <footer>
-
+  <script src="https://unpkg.com/@popperjs/core@2/dist/umd/popper.min.js"></script>
+  <script src="https://unpkg.com/tippy.js@6/dist/tippy-bundle.umd.js"></script>
     <script src="https://unpkg.com/aos@next/dist/aos.js"></script>
 <script>
   AOS.init();
+  tippy.setDefaultProps({delay: 200});
+
+  // tippy('.delete-selected-btn', {
+  //        content: 'Delete selected movies',
+  //        duration: 0,
+  //        arrow: false,
+  //      });
+
+tippy('[data-tippy-content]');
+
+  var btn = $('.back-to-top');
+
+  btn.on('click', function(e) {
+    e.preventDefault();
+    $('html, body').animate({scrollTop:0}, '300');
+  });
+
+
   $(document).ready(function() {
   $("#success-alert").hide();
   $("#myWish").click(function showAlert() {
@@ -19,7 +38,19 @@ if(nav[i].style.display == 'block'){
   nav[i].style.display = 'none';
 }
 else{
-  nav[i].style.display = 'block'
+  nav[i].style.display = 'block';
+}
+}
+}
+
+function showcontactdiv() {
+var contactus = document.getElementsByClassName('contactus-content');
+for (var i=0;i<contactus.length;i+=1){
+if(contactus[i].style.display == 'block'){
+  contactus[i].style.display = 'none';
+}
+else{
+  contactus[i].style.display = 'block';
 }
 }
 }
