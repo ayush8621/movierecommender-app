@@ -287,11 +287,11 @@ child.stderr.on('data', (data) => console.log(data.toString()));
 
 //----------------------< Deploying app on port >-------------------------------
 
-let port = process.env.PORT;
-if(port==null || port==""){
-  port=3000;
-}
+// let port = process.env.PORT;
+// if(port==null || port==""){
+//   port=3000;
+// }
 
-http.listen(port, function(req, res) {
+http.listen(3000, function(req, res) {
   console.log("Server is running on port 3000");
 });
