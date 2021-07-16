@@ -37,7 +37,7 @@
             <input class="star star-1 star-list" id="star-1-<%=i%>" type="radio" value="1" name="star" onclick="rating(this)" <%=status[0]%>>
             <label class="star star-1 star-list" for="star-1-<%=i%>"></label>
           </div>
-          <button class="delete-btn btn" type="submit" value="<%= addedmovies %>" name="deletedmovie" data-tippy-content="Delete <%= addedmovies %> from the list"  data-tippy-arrow="false"  ><i
+          <button class="delete-btn btn" type="submit" value="<%= addedmovies %>" name="deletedmovie" data-bs-toggle="tooltip" data-bs-placement="right" data-trigger="hover" title="Delete <%= addedmovies %> from the list"><i
               class="fas fa-trash"></i></button>
         </div>
       </form>
@@ -45,9 +45,9 @@
 
       <% }); %>
       <form name='checkform' action="/delete" method="post">
-        <button class="delete-selected-btn" type='submit' name='check' value="" data-tippy-content="Delete selected items"  data-tippy-arrow="false" ><img src="/images/trash.gif" /></button>
+        <button class="delete-selected-btn" type='submit' name='check' value="" ><img src="/images/trash.gif" /></button>
       </form>
-      <button class="watchlist-recommend-btn btn" data-tippy-content="Get New Recommendations"  data-tippy-arrow="false"  type="button" name="button" onclick="recommend()">Get New Recommendations</button>
+      <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button" onclick="recommend()">Get New Recommendations</button>
 
     </div>
 
