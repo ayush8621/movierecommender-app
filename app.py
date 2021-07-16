@@ -6,10 +6,10 @@ import nltk
 import json
 import swifter
 
- port = process.env.PORT;
-if(port==null || port==""){
-  port=3000;
-}
+#  port = process.env.PORT;
+# if(port==null || port==""){
+#   port=3000;
+# }
 
 #Loading data
 file_name=['./data/features.npz','./data/movies']

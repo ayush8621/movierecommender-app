@@ -45,7 +45,7 @@
 
       <% }); %>
       <form name='checkform' action="/delete" method="post">
-        <button class="delete-selected-btn" type='submit' name='check' value="" ><img src="/images/trash.gif" /></button>
+        <button class="delete-selected-btn" type='submit' data-tippy-content="Delete Selected movies " data-tippy-arrow="false" name='check' value="" ><img src="/images/trash.gif" /></button>
       </form>
       <button class="watchlist-recommend-btn btn" data-bs-toggle="tooltip" data-bs-placement="bottom" title="get new recommendations" type="button" name="button" onclick="recommend()">Get New Recommendations</button>
 
