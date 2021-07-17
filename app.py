@@ -22,7 +22,7 @@ def distance(row,string):
 
 #Creating client object
 client=socketio.Client()
-client.connect('http://localhost:3000')
+client.connect('https://recom101.herokuapp.com/')
 
 
 #Defining events
