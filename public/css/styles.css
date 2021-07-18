@@ -919,7 +919,7 @@ font-family: ' sans-serif';
 .popover-body{
   background-color: #1f748f;
   color: #ccc;
-  /* display: none; */
+  height: 400px;
 }
 
 .tooltip-inner {

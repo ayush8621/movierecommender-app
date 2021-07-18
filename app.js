@@ -1,3 +1,4 @@
+
 //----------------------< Importing required modules >--------------------------
 
 var {spawn} = require('child_process');
@@ -134,13 +135,11 @@ async function run() {
       let poster = req.params.movieposter;
       let movies = eval(req.params.query);
       let profile = await get_profile(movies[ind].tmdbId);
-      console.log(profile);
 
       let bio = await get_bio(profile.cast);
-      console.log(bio);
       console.log("Profile generated!");
       res.render("moviepost", {
-        movietitle: movies[ind].title, movieimage: poster, profile: profile,bio:bio,id: movies[ind]._id,
+        movietitle: movies[ind].title, movieimage: poster, profile: profile,bio:bio, id: movies[ind]._id,
         genre: movies[ind].genres, popularity: movies[ind].popularity, voteaverage: movies[ind].vote_average, releasedate: movies[ind].release_date,curyear:curyear})
     });
 
@@ -229,32 +228,22 @@ var query1 = '/credits?'
 var img = "https://image.tmdb.org/t/p/w92"
 var c_url = "https://api.themoviedb.org/3/person/"
 
+
 // Generating cast biography
-
 async function get_bio(cast) {
-  let path = [];
+  let bio = Array(11).fill('No Biography found');
 
-  await cast.forEach(async(item)=>{
-    let id = item[3];
+  for(i=0;i<11;i++){
+    let id = cast[i][3]
     let endpoint = c_url + id + "?api_key=" + api_key;
     await fetch(endpoint)
       .then(res => res.json()
       .then(data => {
-        console.log(data.biography);
-        // if(data.biography == ""){
-        //   path.push("Biography not found" );
-        // }
-        // else{
-          path.push(data.biography);
-          console.log(path);
-
-        // }
+        bio[i]=data.biography;
       }))
-      .catch(err => {path.push('No Biography found');});
-    })
-    // console.log(path);
-
-  return path
+      .catch(err => console.log(err));
+  }
+  return bio
 }
 
 
@@ -318,11 +307,14 @@ child.stderr.on('data', (data) => console.log(data.toString()));
 
 
 //----------------------< Deploying app on port >-------------------------------
-
+let host="http://localhost:";
 let port = process.env.PORT;
-if(port==null || port==""){
+
+if(port==null || port=="")
   port=3000;
-}
+
+child.stdin.write(host+port);
+child.stdin.end();
 
 http.listen(port, function(req, res) {
   console.log("Server is running on port 3000");
