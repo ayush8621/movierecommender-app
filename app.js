@@ -317,5 +317,5 @@ child.stdin.write(host+port);
 child.stdin.end();
 
 http.listen(port, function(req, res) {
-  console.log("Server is running on port 3000");
+  console.log("Server is running");
 });
