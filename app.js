@@ -133,11 +133,14 @@ async function run() {
       let ind = req.params.index;
       let poster = req.params.movieposter;
       let movies = eval(req.params.query);
-
       let profile = await get_profile(movies[ind].tmdbId);
+      console.log(profile);
+
+      let bio = await get_bio(profile.cast);
+      console.log(bio);
       console.log("Profile generated!");
       res.render("moviepost", {
-        movietitle: movies[ind].title, movieimage: poster, profile: profile, id: movies[ind]._id,
+        movietitle: movies[ind].title, movieimage: poster, profile: profile,bio:bio,id: movies[ind]._id,
         genre: movies[ind].genres, popularity: movies[ind].popularity, voteaverage: movies[ind].vote_average, releasedate: movies[ind].release_date,curyear:curyear})
     });
 
@@ -224,6 +227,35 @@ var api_key = "30d7de721f9ac1c958640499561b574a";
 var query = '/images?'
 var query1 = '/credits?'
 var img = "https://image.tmdb.org/t/p/w92"
+var c_url = "https://api.themoviedb.org/3/person/"
+
+// Generating cast biography
+
+async function get_bio(cast) {
+  let path = [];
+
+  await cast.forEach(async(item)=>{
+    let id = item[3];
+    let endpoint = c_url + id + "?api_key=" + api_key;
+    await fetch(endpoint)
+      .then(res => res.json()
+      .then(data => {
+        console.log(data.biography);
+        // if(data.biography == ""){
+        //   path.push("Biography not found" );
+        // }
+        // else{
+          path.push(data.biography);
+          console.log(path);
+
+        // }
+      }))
+      .catch(err => {path.push('No Biography found');});
+    })
+    // console.log(path);
+
+  return path
+}
 
 
 // Generating Profile for a movie
@@ -240,7 +272,7 @@ async function get_profile(movie_id) {
       for(i=0;i<11;i++){
         if (cast[i] == undefined)
           break;
-        credits.cast[i] = [cast[i].profile_path, cast[i].original_name, cast[i].character];
+        credits.cast[i] = [cast[i].profile_path,cast[i].original_name, cast[i].character,cast[i].id];
       }
 
       crew.forEach((item)=>{

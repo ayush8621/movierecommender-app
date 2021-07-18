@@ -24,7 +24,6 @@ def distance(row,string):
 client=socketio.Client()
 client.connect('https://recom101.herokuapp.com/')
 
-
 #Defining events
 @client.on('connect')
 def on_connect():
