@@ -203,7 +203,7 @@ async function run() {
             recom[i]['poster'] = url;
           }
 
-          res.redirect("/movielist",{curyear:curyear});
+          res.redirect("/movielist");
         });
       });
     });
