@@ -307,7 +307,7 @@ child.stderr.on('data', (data) => console.log(data.toString()));
 
 
 //----------------------< Deploying app on port >-------------------------------
-let host=" https://recom101.herokuapp.com/";
+let host="https://recom101.herokuapp.com/";
 let port = process.env.PORT;
 
 if(port==null || port=="")
