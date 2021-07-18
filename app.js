@@ -307,7 +307,7 @@ child.stderr.on('data', (data) => console.log(data.toString()));
 
 
 //----------------------< Deploying app on port >-------------------------------
-let host="https://recom101.herokuapp.com/";
+let host="http://localhost:3000";
 let port = process.env.PORT;
 
 if(port==null || port=="")
@@ -317,5 +317,5 @@ child.stdin.write(host+port);
 child.stdin.end();
 
 http.listen(port, function(req, res) {
-  console.log("Server is running");
+  console.log("Server is running on port 3000");
 });
