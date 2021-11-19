@@ -23,7 +23,9 @@ const app = express();
 const http = _http_.createServer(app);
 const io = socket(http);
 const child = spawn('python', ['app.py']);
-const url = "mongodb+srv://admin:kanishk@cluster1.v5rkc.mongodb.net/movies?retryWrites=true&w=majority";
+//const url = "mongodb://admin:kanishk@main-shard-00-00-03xkr.mongodb.net:27017,main-shard-00-01-03xkr.mongodb.net:27017,main-shard-00-02-03xkr.mongodb.net:27017/main?ssl=true&replicaSet=Main-shard-0&authSource=admin&retryWrites=true";
+
+const url= "mongodb+srv://admin:kanishk@cluster1.v5rkc.mongodb.net/movies?retryWrites=true&w=majority";
 const client = new MongoClient(url, {
   useNewUrlParser: true,
   useUnifiedTopology: true
@@ -307,7 +309,7 @@ child.stderr.on('data', (data) => console.log(data.toString()));
 
 
 //----------------------< Deploying app on port >-------------------------------
-let host="https://recom101.herokuapp.com/";
+let host="http://localhost:";
 let port = process.env.PORT;
 
 if(port==null || port=="")
@@ -316,6 +318,6 @@ if(port==null || port=="")
 child.stdin.write(host+port);
 child.stdin.end();
 
-http.listen(port, function(req, res) {
+http.listen(3000, function(req, res) {
   console.log("Server is running on port 3000");
 });
